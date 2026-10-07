@@ -26,6 +26,17 @@ python3 scripts/install_skills.py --apply
 
 첫 명령은 미리보기다. 실제 적용은 없는 스킬만 추가하며 기존 다른 파일은 덮어쓰지 않는다. 스킬 설치가 외부 CLI·Python 라이브러리·서비스 로그인까지 설치한다는 뜻은 아니다. 필요한 추가 도구는 해당 작업을 사용할 때 표와 스킬 원문에 따라 준비한다. Python 라이브러리는 프로젝트 `.venv/`, CLI는 해당 패키지 관리자의 위치에 둔다. Hermes 런타임에 임의로 pip 설치하지 않는다.
 
+## 전역 문체 규칙
+
+스킬을 준비한 뒤 [전역 문체 규칙](docs/global-rules.md)에 따라 선택한 프로필의 `SOUL.md`에 보고서 검토 규칙을 적용한다. 설치 요청문 한 번으로 이 단계까지 수행한다.
+
+```sh
+python3 scripts/install_global_rules.py
+python3 scripts/install_global_rules.py --apply
+```
+
+첫 명령은 읽기 전용 미리보기다. 기본 대상은 `${HERMES_HOME:-$HOME/.hermes}`이며 다른 프로필에는 `--home`으로 정확한 홈을 지정한다. 같은 규칙은 건너뛰고 다른 기존 보고서 규칙이나 변경된 관리 구간은 충돌로 중단한다. 다른 문체·제품·모델 규칙은 덮어쓰지 않는다.
+
 ## 3. OMH
 
 [공식 INSTALL_FOR_AGENTS.md](https://github.com/rlaope/oh-my-hermes/blob/main/INSTALL_FOR_AGENTS.md)를 읽고 설치할 commit을 고정한다. 설치기와 안내를 같은 commit으로 사용한다. 공식 절차로 설치·setup하고 연결한 GPT·Claude 제공자를 반영한다.
@@ -60,5 +71,6 @@ hermes plugins install PhoeniXAbhisheK/hermes-plugin-provider-usage --ref 753dfb
 - 사용량 패널의 실제 조회·새로고침을 확인한다.
 - 브라우저에서 이동·입력·결과 읽기가 되고 원래 앱·키보드 대상·커서가 유지된다.
 - 기존 프로필·스킬·브라우저 데이터가 보존된다.
+- 새 Hermes 세션에서 선택한 프로필의 `SOUL.md` 규칙이 로드되고, 짧은 보고서 작성 시 Humanizer 로드·검토를 실제로 확인한다. 파일 설치와 실제 적용 확인은 구분한다.
 
 진단·설치 테스트와 위의 실제 사용자 흐름은 따로 기록한다. 로그인이나 OS 권한에서 멈추면 완료한 단계부터 이어간다.

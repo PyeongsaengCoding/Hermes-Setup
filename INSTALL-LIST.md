@@ -14,6 +14,7 @@
 | Hermes 플러그인 | omh-auto-routing | 개인 자동 라우팅 강제 실험 | 기존 설치본은 비활성; 기본 배포하지 않음 | `H/plugins/omh-auto-routing/` (기존 설치만) | 공식 OMH 기능이 아님 |
 | Hermes UI 확장 | OMH Desktop·TUI | 상태·작업 표시 | OMH setup에서 선택한 UI 연결 | `H/desktop-plugins/omh/`; `H/tui-widgets/omh-status.mjs` | 설치 여부·표시는 별도 확인 |
 | 프로젝트 지침 | AGENTS.md | 저장소 작업 규칙 | 이 저장소에 포함; 스킬 아님 | `Hermes-Setup/AGENTS.md` | 다른 프로젝트는 각 프로젝트 루트 |
+| 전역 문체 규칙 | 보고서·Humanizer 사용 | 보고서의 과장·군더더기·AI 문체 검토 | `scripts/install_global_rules.py`로 중복 없이 추가; 기존 규칙 충돌 시 보존·확인 | `H/SOUL.md` | 원본 `templates/report-writing.md`; 제품 UX writing·코드 정리 규칙은 포함하지 않음 |
 | 스킬 | apple-notes | Apple 메모 읽기·검색·작성 | 공식 원본; memo; macOS Automation 승인 | `H/skills/apple/apple-notes/` | `$(brew --prefix)/bin/memo` |
 | 스킬 | apple-reminders | Apple 미리 알림 관리 | 공식 원본; remindctl; 미리 알림 승인 | `H/skills/apple/apple-reminders/` | `$(brew --prefix)/bin/remindctl` |
 | 스킬 | findmy | 나의 찾기 기기·AirTag 확인 | 공식 원본; 나의 찾기·iCloud; 화면 권한 | `H/skills/apple/findmy/` | macOS 기본 앱 |

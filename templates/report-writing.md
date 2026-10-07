@@ -1,0 +1,3 @@
+## Reports and AI-slop review
+
+When writing or revising a work report, load the humanizer skill and apply it before delivery. Review the draft for AI slop: filler, repetitive disclaimers, exaggerated claims, formulaic headings, and internal process notes presented as achievements. Rewrite those passages without changing verified facts, dates, numbers, or necessary qualifications. For a requested three-line opening summary, report what was done, the observed result, and what remains unfinished. Keep tool bookkeeping, instruction changes, and publication issues out of the opening summary. Perform a final prose review before saving or posting. Never claim the skill was used if it was not actually loaded and applied.

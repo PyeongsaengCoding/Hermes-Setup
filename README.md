@@ -6,15 +6,16 @@ macOS에서 Hermes Desktop, OMH, 사용량 플러그인, 스킬과 브라우저 
 
 Hermes가 아직 없으면 로컬 파일과 명령을 사용할 수 있는 AI에 다음 요청을 보낸다.
 
-> https://github.com/PyeongsaengCoding/Hermes-Setup 을 `~/Downloads/Hermes-Setup`에 받아 내 Mac에 구성해줘. Hermes Desktop, OMH, 사용량 플러그인과 설치 목록의 스킬을 준비하고, Aside에 내가 선택한 브라우저 프로필을 가져와줘. 연결한 계정으로 모델·추론·fallback 모두 OMH 기본 옵션을 사용해줘. 기존 설정을 보존하고 로그인·권한만 나에게 요청해줘. 실제 위임, 사용량 조회, 브라우저 작업과 포커스 보존을 확인한 뒤 완료·미완료만 알려줘.
+> https://github.com/PyeongsaengCoding/Hermes-Setup 을 `~/Downloads/Hermes-Setup`에 받아 내 Mac에 구성해줘. Hermes Desktop, OMH, 사용량 플러그인과 설치 목록의 스킬을 준비하고, 선택한 Hermes 프로필에 보고서 문체·Humanizer 사용 전역 규칙도 중복 없이 적용해줘. Aside에 내가 선택한 브라우저 프로필을 가져와줘. 연결한 계정으로 모델·추론·fallback 모두 OMH 기본 옵션을 사용해줘. 기존 설정을 보존하고 로그인·권한과 기존 규칙 충돌만 나에게 확인해줘. 새 Hermes 세션의 전역 규칙 로딩과 보고서 검토, 실제 위임, 사용량 조회, 브라우저 작업과 포커스 보존을 확인한 뒤 완료·미완료만 알려줘.
 
-이 저장소는 설치 가이드와 스킬 설치 도구다. 로그인·프로필 가져오기·브라우저 연결까지 무인으로 끝내는 설치기는 아니다.
+이 저장소는 설치 가이드와 스킬·전역 문체 규칙 설치 도구다. 위 문장은 AI에 복사해 보내는 설치 요청문이며 단일 셸 명령이 아니다. 로그인·프로필 가져오기·브라우저 연결까지 무인으로 끝내는 설치기는 아니다.
 
 ## 문서
 
 - [설치 목록](INSTALL-LIST.md): 플러그인·스킬·추가 도구와 설치 경로를 한 표로 정리
 - [설치](INSTALL_FOR_AGENTS.md): Hermes 없는 상태부터 시작
 - [모델 라우팅](docs/model-routing.md): OMH 기본 모델·추론·fallback
+- [전역 문체 규칙](docs/global-rules.md): 선택한 프로필의 SOUL.md에 중복 없이 적용
 - [브라우저](docs/browsers.md): Aside·Chrome·Edge·Safari 연결과 프로필 가져오기
 - [검증 상태](docs/verification.md): 확인한 결과와 남은 검사
 
