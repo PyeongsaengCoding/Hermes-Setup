@@ -7,7 +7,7 @@
 - Hermes CLI가 실행되며 `provider-usage`가 활성 목록에 있다.
 - 비-OMH 스킬 61개를 원본과 대조했다. 공식 58개·커스텀 3개다.
 - `omh-auto-routing`은 설치되어 있으나 비활성이다.
-- 최종 GPT Sol 모델과 모델별 Medium 설정이 있다.
+- 개인 Sol 최종 fallback과 모델별 Medium 고정을 제거했다. OMH 분류별 체인은 모두 기본값이다.
 - cua-driver 진단에서 접근성·화면 권한과 연결을 확인했다.
 
 ## 저장소 검사
@@ -21,4 +21,4 @@ python3 -m unittest discover -s tests -v
 
 ## 남은 실제 검사
 
-Hermes 없는 새 Mac 전체 설치, 새 사용자 로그인, GPT·Claude 실제 위임과 마지막 fallback, 사용량 패널 새로고침, Aside 전체 프로필 가져오기, 브라우저 입력·동시 작업·포커스 보존은 이번 공개 작업에서 새로 확인하지 않았다. 설치 요청을 실행하는 컴퓨터에서 완료 기준을 검사한다.
+Hermes 없는 새 Mac 전체 설치, 새 사용자 로그인, GPT·Claude 실제 위임과 OMH 기본 fallback, 사용량 패널 새로고침, Aside 전체 프로필 가져오기, 브라우저 입력·동시 작업·포커스 보존은 이번 공개 작업에서 새로 확인하지 않았다. 설치 요청을 실행하는 컴퓨터에서 완료 기준을 검사한다.

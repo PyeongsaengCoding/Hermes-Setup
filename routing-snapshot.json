@@ -254,10 +254,5 @@
       "origin": "default"
     }
   ],
-  "final_fallback": {
-    "provider": "openai-codex",
-    "model": "gpt-6.1-sol",
-    "reasoning_effort": "medium",
-    "runtime_verified": false
-  }
+  "fallback_policy": "omh-default; no personal final model or reasoning override"
 }

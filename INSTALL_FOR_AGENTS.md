@@ -36,7 +36,7 @@ omh doctor
 omh model-chains show
 ```
 
-OMH 기본 분류별 라우팅을 유지한다. 내부 위임의 마지막 fallback 설정과 검증은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
+모델·추론·fallback 모두 OMH 기본 옵션을 사용하며 특정 모델을 마지막에 추가하지 않는다. 설정과 검증은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
 
 ## 4. 사용량 플러그인
 
@@ -56,7 +56,7 @@ hermes plugins install PhoeniXAbhisheK/hermes-plugin-provider-usage --ref 753dfb
 
 - Hermes Desktop에서 실제 질문이 응답한다.
 - GPT·Claude 내부 자식의 실제 모델·provider·응답을 확인한다. 연결한 제공자만 검사한다.
-- 통제된 오류로 마지막 fallback과 Medium을 검사한다. 실제 한도를 소진시키지 않는다.
+- 통제된 오류로 OMH 기본 fallback 절차를 검사한다. 실제 한도를 소진시키지 않는다.
 - 사용량 패널의 실제 조회·새로고침을 확인한다.
 - 브라우저에서 이동·입력·결과 읽기가 되고 원래 앱·키보드 대상·커서가 유지된다.
 - 기존 프로필·스킬·브라우저 데이터가 보존된다.
