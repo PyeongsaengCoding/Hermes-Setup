@@ -7,10 +7,11 @@
 | 종류 | 항목 | 용도 | 설치 기준·추가 준비 | 일반 설치 경로 | 추가 도구·설정 경로 |
 |---|---|---|---|---|---|
 | 앱·CLI | Hermes | 주 작업 에이전트 | 필수; 공식 Desktop/CLI 설치 | `H/` | Desktop 앱은 `/Applications/`; 소스 방식 checkout은 `H/hermes-agent/` |
+| Desktop 설정 | UI 크기 맞춤 | 기존 ChatGPT·Claude 앱의 창·글자·UI 크기 반영 | 기존 앱이 있으면 확인·적용·화면 비교; 두 앱이 다르면 기준 확인 | Hermes Desktop 창·Appearance 설정 | [적용 기준](docs/desktop-ui.md); 기존 앱·포커스 보존 |
 | 앱 | Aside | 로그인 브라우저 작업·프로필 가져오기 | 필수; 공식 앱·CLI·자신의 로그인 | `/Applications/Aside.app` | CLI는 공식 설치기 경로 확인; macOS 프로필은 `~/Library/Application Support/Aside/` |
 | 앱 | Chrome·Edge·Safari | 기존 로그인 브라우저 활용 | 사용하는 브라우저만; 프로필 가져오기는 지원 여부 확인 | `/Applications/` | `~/Library/Application Support/Google/Chrome/`, `~/Library/Application Support/Microsoft Edge/`, Safari는 OS 관리 |
 | 확장·스킬팩 | OMH | 작업 분류·라우팅·검증 지침 | 필수; 공식 install·setup | `~/.omh/`; `~/.local/share/omh/` | Hermes 등록 `H/plugins/omh/`; 스킬 실제 경로는 `skills.external_dirs` 확인 |
-| Hermes 플러그인 | provider-usage | 계정 사용량·잔여 한도·리셋 시간 | 필수; 설치·활성화·실제 조회 | `H/plugins/provider-usage/` | Desktop UI `H/desktop-plugins/provider-usage/`; 인증은 사용자의 로컬 저장소 |
+| Hermes 플러그인 | provider-usage | GPT·Claude 사용량·잔여 한도·리셋 시간 | 필수; 설치·활성화·[GPT·Claude만 표시](docs/provider-usage.md)·실제 조회 | `H/plugins/provider-usage/` | Desktop UI `H/desktop-plugins/provider-usage/`; 표시 어댑터 `scripts/configure_provider_usage.py`; 인증은 사용자의 로컬 저장소 |
 | Hermes 플러그인 | omh-auto-routing | 개인 자동 라우팅 강제 실험 | 기존 설치본은 비활성; 기본 배포하지 않음 | `H/plugins/omh-auto-routing/` (기존 설치만) | 공식 OMH 기능이 아님 |
 | Hermes UI 확장 | OMH Desktop·TUI | 상태·작업 표시 | OMH setup에서 선택한 UI 연결 | `H/desktop-plugins/omh/`; `H/tui-widgets/omh-status.mjs` | 설치 여부·표시는 별도 확인 |
 | 프로젝트 지침 | AGENTS.md | 저장소 작업 규칙 | 이 저장소에 포함; 스킬 아님 | `Hermes-Setup/AGENTS.md` | 다른 프로젝트는 각 프로젝트 루트 |

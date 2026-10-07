@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-07",
+  "scope": "provider-usage desktop display adapter",
+  "allowed_provider_ids": [
+    "openai-codex",
+    "anthropic"
+  ],
+  "installed_source_and_desktop_copy": true,
+  "installed_sha256": "ae14ca2ea7c9b61b61f07bf47d10c89d93eb443b277a72d29dfa7269025a6a9d",
+  "repository_tests_passed": 28,
+  "adapter_tests_passed": 9,
+  "javascript_syntax_checks": "passed for both installed targets",
+  "component_test": {
+    "test_input": "synthetic",
+    "real_plugin_module": true,
+    "real_react_renderer": true,
+    "renders": {
+      "BarDetail": {
+        "gpt": true,
+        "claude": true,
+        "otherProviders": false
+      },
+      "BarTip": {
+        "gpt": true,
+        "claude": true,
+        "otherProviders": false
+      },
+      "UsagePanel": {
+        "gpt": true,
+        "claude": true,
+        "otherProviders": false
+      }
+    },
+    "alertCount": 2,
+    "alertProviders": [
+      "GPT",
+      "Claude"
+    ]
+  },
+  "component_test_notes": [
+    "Upstream React key warnings appeared during the renderer probe; unrelated markup was not changed."
+  ],
+  "live_desktop_status_bar_observed": true,
+  "live_desktop_status_bar_provider_labels": [
+    "gpt",
+    "claude"
+  ],
+  "live_desktop_popover_verified": false,
+  "live_threshold_notifications_verified": false,
+  "credentials_or_provider_backend_modified": false,
+  "private_desktop_capture_published": false,
+  "relaunch_persistence_verified": false
+}

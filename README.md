@@ -6,7 +6,7 @@ macOS에서 Hermes Desktop, OMH, 사용량 플러그인, 스킬과 브라우저 
 
 Hermes가 아직 없으면 로컬 파일과 명령을 사용할 수 있는 AI에 다음 요청을 보낸다.
 
-> https://github.com/PyeongsaengCoding/Hermes-Setup 을 `~/Downloads/Hermes-Setup`에 받아 내 Mac에 구성해줘. Hermes Desktop, OMH, 사용량 플러그인과 설치 목록의 스킬을 준비하고, 선택한 Hermes 프로필에 보고서 문체·Humanizer 사용 전역 규칙도 중복 없이 적용해줘. Aside에 내가 선택한 브라우저 프로필을 가져와줘. 연결한 계정으로 모델·추론·fallback 모두 OMH 기본 옵션을 사용해줘. 기존 설정을 보존하고 로그인·권한과 기존 규칙 충돌만 나에게 확인해줘. 새 Hermes 세션의 전역 규칙 로딩과 보고서 검토, 실제 위임, 사용량 조회, 브라우저 작업과 포커스 보존을 확인한 뒤 완료·미완료만 알려줘.
+> https://github.com/PyeongsaengCoding/Hermes-Setup 을 `~/Downloads/Hermes-Setup`에 받아 내 Mac에 구성해줘. Hermes Desktop, OMH, 사용량 플러그인과 설치 목록의 스킬을 준비하고, 사용량 플러그인의 상태바·상세 패널·알림에는 GPT와 Claude만 표시해줘. 선택한 Hermes 프로필에 보고서 문체·Humanizer 사용 전역 규칙도 중복 없이 적용해줘. 기존에 쓰던 ChatGPT·Claude 앱이 있으면 그 앱의 창 크기와 글자·UI 크기에 Hermes Desktop을 맞춰줘. Aside에 내가 선택한 브라우저 프로필을 가져와줘. 연결한 계정으로 모델·추론·fallback 모두 OMH 기본 옵션을 사용해줘. 기존 설정과 내 포커스를 보존하고 로그인·권한, 두 앱의 크기가 다를 때 기준 앱 선택, 기존 규칙 충돌만 나에게 확인해줘. 새 Hermes 세션의 전역 규칙 로딩과 보고서 검토, UI 크기 비교·설정 유지, 실제 위임, 사용량 조회와 GPT·Claude 외 표시 제외, 브라우저 작업과 포커스 보존을 확인한 뒤 완료·미완료만 알려줘.
 
 이 저장소는 설치 가이드와 스킬·전역 문체 규칙 설치 도구다. 위 문장은 AI에 복사해 보내는 설치 요청문이며 단일 셸 명령이 아니다. 로그인·프로필 가져오기·브라우저 연결까지 무인으로 끝내는 설치기는 아니다.
 
@@ -16,6 +16,8 @@ Hermes가 아직 없으면 로컬 파일과 명령을 사용할 수 있는 AI에
 - [설치](INSTALL_FOR_AGENTS.md): Hermes 없는 상태부터 시작
 - [모델 라우팅](docs/model-routing.md): OMH 기본 모델·추론·fallback
 - [전역 문체 규칙](docs/global-rules.md): 선택한 프로필의 SOUL.md에 중복 없이 적용
+- [Desktop UI 크기](docs/desktop-ui.md): 기존 ChatGPT·Claude 앱 기준으로 창·글자·UI 배율 맞춤
+- [사용량 표시 제한](docs/provider-usage.md): GPT·Claude만 상태바·패널·알림에 표시
 - [브라우저](docs/browsers.md): Aside·Chrome·Edge·Safari 연결과 프로필 가져오기
 - [검증 상태](docs/verification.md): 확인한 결과와 남은 검사
 
