@@ -68,13 +68,13 @@ fallback 순서와 추론 유지는 실제 한도를 소진하거나 제한을 �
 ### Claude 넉넉형 요청
 
 ```text
-https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/claude-generous.json을 읽고, 내 현재 Hermes 프로필을 Claude 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. GPT·Claude 계열 외 후보는 모든 분류에서 제거하고, 로그인·구독·다른 프로필은 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
+https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/claude-generous.json을 읽고, 내 현재 Hermes 프로필을 Claude 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. GPT·Claude 계열 외 후보는 모든 분류에서 제거하고, 로그인·구독·다른 프로필은 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 라우팅 설정과 실제 위임 결과를 알려줘.
 ```
 
 ### GPT(코덱스) 넉넉형 요청
 
 ```text
-https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/gpt-generous.json을 읽고, 내 현재 Hermes 프로필을 GPT(코덱스) 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. GPT·Claude 계열 외 후보는 모든 분류에서 제거하고, 로그인·구독·다른 프로필은 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
+https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/gpt-generous.json을 읽고, 내 현재 Hermes 프로필을 GPT(코덱스) 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. GPT·Claude 계열 외 후보는 모든 분류에서 제거하고, 로그인·구독·다른 프로필은 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 라우팅 설정과 실제 위임 결과를 알려줘.
 ```
 
 ## 선택적 CLI 전환
@@ -126,4 +126,4 @@ omh update --dry-run --no-omh-tui
 omh update --no-omh-tui
 ```
 
-`--no-omh-tui`는 OMH 업데이트 때 기존 화면·스킨을 유지한다. 업데이트 후 fallback 설정과 OMH 후보를 다시 읽고 소스 호환 패치 두 개를 미리보기·검증한다. 호환될 때만 적용한 뒤 Desktop을 재시작한다. 업데이트 명령 성공만으로 커스텀 라우팅 보존을 완료했다고 보고하지 않는다.
+`--no-omh-tui`는 OMH 업데이트 때 기존 화면·스킨을 유지한다. 업데이트 후 fallback 설정과 OMH 후보를 다시 읽고 소스 호환 패치 두 개를 미리보기·검증한다. 호환될 때만 적용한 뒤 Desktop을 재시작한다.

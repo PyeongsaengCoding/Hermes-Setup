@@ -27,6 +27,6 @@ API 키·인증 파일·모델·OMH fallback은 수정하지 않는다. 이 어�
 
 `python3 -m unittest discover -s tests -v`로 어댑터와 DOM 검사를 실행한다. DOM 검사는 설치 원본·Desktop 복사본과 기존 의존성을 사용하며, 없으면 해당 검사를 건너뛴다. 별도 의존성 위치는 `HERMES_DESKTOP_NODE_MODULES`로 지정한다.
 
-실제 Desktop에서 조회·새로고침과 모든 표시 영역의 제한, 숨긴 제공자의 알림 차단, 기존 선택 보존을 확인한다. 테스트 통과와 실행 중인 화면 반영은 구분한다. 재로딩이 필요하면 지원 기능을 사용하며 세션을 종료하거나 앱을 강제 재시작하지 않는다.
+실제 Desktop에서 조회·새로고침과 모든 표시 영역의 제한, 숨긴 제공자의 알림 차단, 기존 선택 보존을 확인한다. 재로딩이 필요하면 지원 기능을 사용하며 세션을 종료하거나 앱을 강제 재시작하지 않는다.
 
 [원본 플러그인](https://github.com/PhoeniXAbhisheK/hermes-plugin-provider-usage), [검증 상태](verification.md).

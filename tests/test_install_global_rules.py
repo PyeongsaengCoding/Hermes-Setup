@@ -50,8 +50,8 @@ class GlobalRulesTests(unittest.TestCase):
         self.assertNotIn(installer.LEGACY_REPORT_HEADING, content.decode())
         self.assertEqual(installer.install(self.home)['legacy_report_policy'], 'absent')
         self.assertEqual(content.decode().count(installer.BROWSER_START), 1)
-        self.assertEqual(content.decode().count(installer.INTENT_START), 1)
-        self.assertIn(installer.intent_policy(), content.decode())
+        self.assertNotIn('hermes-setup:user-intent:begin', content.decode())
+        self.assertNotIn('## User intent and course correction', content.decode())
         self.assertIn(installer.delivery_policy(), content.decode())
         self.assertEqual(content.decode().count(installer.DELIVERY_START), 1)
 
@@ -70,18 +70,19 @@ class GlobalRulesTests(unittest.TestCase):
         self.assertEqual(updated.count(installer.browser_policy()), 1)
         self.assertNotIn(installer.BROWSER_START, updated)
 
-    def test_existing_unmarked_intent_policy_not_duplicated(self):
-        existing = installer.browser_policy() + '\n\n' + installer.intent_policy() + '\n\n' + installer.delivery_policy() + '\n'
+    def test_retired_unmarked_rule_is_preserved(self):
+        retired = '## User intent and course correction\nPersonal existing rule.\n'
+        existing = installer.browser_policy() + '\n\n' + retired + '\n' + installer.delivery_policy() + '\n'
         self.seed(existing)
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'unchanged')
         self.assertEqual(self.target.read_text(), existing)
 
-    def test_changed_intent_rule_preserves_whole_file(self):
-        existing = installer.INTENT_START + '\nPersonal edit.\n' + installer.INTENT_END + '\n'
+    def test_retired_managed_rule_is_not_validated_or_changed(self):
+        existing = '<!-- hermes-setup:user-intent:begin -->\nPersonal edit.\n<!-- hermes-setup:user-intent:end -->\n'
         self.seed(existing)
-        with self.assertRaises(ValueError):
-            installer.install(self.home, apply=True)
-        self.assertEqual(self.target.read_text(), existing)
+        self.assertEqual(installer.install(self.home, apply=True)['status'], 'added')
+        self.assertTrue(self.target.read_text().startswith(existing))
+        self.assertEqual(self.target.read_text().count('hermes-setup:user-intent:begin'), 1)
 
     def test_delivery_policy_requires_folder_card_without_auto_open(self):
         body = installer.delivery_policy()
@@ -105,24 +106,19 @@ class GlobalRulesTests(unittest.TestCase):
             installer.install(self.home, apply=True)
         self.assertEqual(self.target.read_text(), existing)
 
-    def test_malformed_intent_markers_are_conflict(self):
-        self.seed(installer.INTENT_START + '\nIncomplete.\n')
+    def test_retired_incomplete_rule_does_not_block_installation(self):
+        self.seed('<!-- hermes-setup:user-intent:begin -->\nIncomplete.\n')
         before = self.target.read_bytes()
-        with self.assertRaises(ValueError):
-            installer.install(self.home, apply=True)
-        self.assertEqual(self.target.read_bytes(), before)
+        self.assertEqual(installer.install(self.home, apply=True)['status'], 'added')
+        self.assertTrue(self.target.read_bytes().startswith(before))
 
-    def test_intent_policy_covers_correction_without_mandatory_confirmation(self):
-        body = installer.intent_policy()
-        for requirement in (
-            'initial interpretation as provisional',
-            'plan, and delegated work',
-            'revise or stop work',
-            'Do not present your proposals as user-approved requirements',
-            'Choose implementation details autonomously',
-            "user's corrected intent",
-        ):
-            self.assertIn(requirement, body)
+    def test_retired_template_is_not_an_installation_dependency(self):
+        self.assertFalse((ROOT / 'templates/user-intent.md').exists())
+        installer.install(self.home, apply=True)
+        content = self.target.read_text()
+        self.assertIn(installer.browser_policy(), content)
+        self.assertIn(installer.delivery_policy(), content)
+        self.assertNotIn('hermes-setup:user-intent:', content)
 
     def test_adds_browser_rule_to_existing_managed_report(self):
         report = installer.LEGACY_REPORT_START + '\nPersonal report policy.\n' + installer.LEGACY_REPORT_END + '\n'

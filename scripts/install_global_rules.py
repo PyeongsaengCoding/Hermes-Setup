@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add intent, Aside and document delivery rules without overwriting the profile's SOUL."""
+"""Add Aside and document delivery rules without overwriting the profile's SOUL."""
 import argparse
 import json
 import os
@@ -12,9 +12,6 @@ LEGACY_REPORT_HEADING = '## Reports and AI-slop review'
 BROWSER_START = '<!-- hermes-setup:aside-browser:begin -->'
 BROWSER_END = '<!-- hermes-setup:aside-browser:end -->'
 BROWSER_HEADING = '## Browser work in Aside'
-INTENT_START = '<!-- hermes-setup:user-intent:begin -->'
-INTENT_END = '<!-- hermes-setup:user-intent:end -->'
-INTENT_HEADING = '## User intent and course correction'
 DELIVERY_START = '<!-- hermes-setup:document-delivery:begin -->'
 DELIVERY_END = '<!-- hermes-setup:document-delivery:end -->'
 DELIVERY_HEADING = '## Document delivery in Hermes Desktop'
@@ -22,10 +19,6 @@ DELIVERY_HEADING = '## Document delivery in Hermes Desktop'
 
 def browser_policy():
     return (ROOT / 'templates/aside-browser.md').read_text(encoding='utf-8').strip()
-
-
-def intent_policy():
-    return (ROOT / 'templates/user-intent.md').read_text(encoding='utf-8').strip()
 
 
 def delivery_policy():
@@ -61,7 +54,6 @@ def install(home, apply=False):
     existing = target.read_bytes().decode('utf-8') if target.exists() else ''
     policies = (
         (browser_policy(), BROWSER_START, BROWSER_END, BROWSER_HEADING),
-        (intent_policy(), INTENT_START, INTENT_END, INTENT_HEADING),
         (delivery_policy(), DELIVERY_START, DELIVERY_END, DELIVERY_HEADING),
     )
     # Validate every policy before writing, so a conflict preserves the whole file.

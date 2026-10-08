@@ -293,17 +293,7 @@
       "extra_path": "Hermes PM 관리 환경 또는 격리 helper `.venv/`",
       "local_modified": false
     },
-    {
-      "name": "naver-blog-production",
-      "description": "네이버 블로그 제작·예약 검증",
-      "kind": "skill",
-      "source_kind": "local",
-      "source_path": "skills/naver-blog-production",
-      "install_path": "skills/naver-blog-production",
-      "extra_install": "자신의 블로그 로그인·운영 지침",
-      "extra_path": "브라우저 개인 프로필; 프로젝트 `AGENTS.md`",
-      "local_modified": false
-    },
+
     {
       "name": "obsidian",
       "description": "Obsidian vault 노트 작업",

@@ -1,8 +1,8 @@
 # 설치 목록
 
-`H`는 `${HERMES_HOME:-$HOME/.hermes}`다. 기본은 `~/.hermes/`, 이름 있는 프로필은 `~/.hermes/profiles/<이름>/`이다. `$(brew --prefix)`는 Apple Silicon에서 보통 `/opt/homebrew`, Intel에서 `/usr/local`이다. npm·uv·Go 실행 파일 위치는 각 관리자의 설정을 따른다.
+`H`는 `${HERMES_HOME:-$HOME/.hermes}`다. 기본은 `~/.hermes/`, 이름 있는 프로필은 `~/.hermes/profiles/<이름>/`이다. `$(brew --prefix)`는 설치 대상인 Apple Silicon에서 보통 `/opt/homebrew`다. npm·uv·Go 실행 파일 위치는 각 관리자의 설정을 따른다.
 
-비-OMH 스킬 60개를 기준으로 한다. 공식 원본 57개와 일반화한 커스텀 3개다. 스킬 문서는 설치하지만 CLI·라이브러리·서비스 권한은 해당 작업을 사용할 때 준비한다. 로컬에서 수정된 공식 스킬 3개는 수정본 대신 고정 공식 원본을 설치한다. OMH 스킬은 OMH 설치기로 별도 관리한다.
+비-OMH 스킬 59개를 기준으로 한다. 공식 원본 57개와 일반화한 커스텀 2개다. 스킬 문서는 설치하지만 CLI·라이브러리·서비스 권한은 해당 작업을 사용할 때 준비한다. 공식 스킬은 로컬 수정본이 아니라 고정 공식 원본을 설치한다. OMH 스킬은 OMH 설치기로 별도 관리한다.
 
 | 종류 | 항목 | 용도 | 설치 기준·추가 준비 | 일반 설치 경로 | 추가 도구·설정 경로 |
 |---|---|---|---|---|---|
@@ -13,10 +13,9 @@
 | 확장·스킬팩 | OMH | 작업 분류·라우팅·검증 지침 | 필수; 공식 install·setup | `~/.omh/`; `~/.local/share/omh/` | Hermes 등록 `H/plugins/omh/`; 스킬 실제 경로는 `skills.external_dirs` 확인 |
 | 런타임 호환 패치 | 자식 fallback 순서·추론 | Fable 시작·GPT 시작 경로의 순서와 작업별 추론 유지 | 설치본에 순서·추론 보완이 필요할 때만 미리보기·적용·새 프로세스 검증 | 실제 소스의 `agent/chat_completion_helpers.py`, `tools/delegate_tool_config.py` | `scripts/configure_delegation_reasoning.py`, `scripts/configure_gpt_fallback.py`; [적용 기준](docs/model-routing.md) |
 | Hermes 플러그인 | provider-usage | GPT·Claude 사용량·잔여 한도·리셋 시간 | 필수; 설치·활성화·[GPT·Claude만 표시](docs/provider-usage.md)·실제 조회 | `H/plugins/provider-usage/` | Desktop UI `H/desktop-plugins/provider-usage/`; 표시 어댑터 `scripts/configure_provider_usage.py`; 인증은 사용자의 로컬 저장소 |
-| Hermes 플러그인 | omh-auto-routing | 개인 자동 라우팅 강제 실험 | 기존 설치본은 비활성; 기본 배포하지 않음 | `H/plugins/omh-auto-routing/` (기존 설치만) | 공식 OMH 기능이 아님 |
 | Hermes UI 확장 | OMH Desktop·TUI | 상태·작업 표시 | OMH setup에서 선택한 UI 연결 | `H/desktop-plugins/omh/`; `H/tui-widgets/omh-status.mjs` | 설치 여부·표시는 별도 확인 |
 | 프로젝트 지침 | AGENTS.md | 저장소 작업 규칙 | 이 저장소에 포함; 스킬 아님 | `Hermes-Setup/AGENTS.md` | 다른 프로젝트는 각 프로젝트 루트 |
-| 전역 규칙 | 사용자 의도·정정 반영, Aside 브라우저 직접 조작, 문서 전달 | 목적·방법 구별과 정정 시 계획·위임 재검토; Aside `repl` 직접 조작; 문서 전달 시 폴더 카드 제공·앱 자동 실행 금지 | `scripts/install_global_rules.py`로 중복 없이 추가; 기존 규칙 충돌 시 보존·확인 | `H/SOUL.md` | 원본 `templates/user-intent.md`, `templates/aside-browser.md`, `templates/document-delivery.md`; 브라우저 프로필은 프로젝트 규칙 |
+| 전역 규칙 | Aside 브라우저 직접 조작, 문서 전달 | Aside `repl` 직접 조작; 문서 전달 시 폴더 카드 제공·앱 자동 실행 금지 | `scripts/install_global_rules.py`로 중복 없이 추가; 기존 규칙 충돌 시 보존·확인 | `H/SOUL.md` | 원본 `templates/aside-browser.md`, `templates/document-delivery.md`; 브라우저 프로필은 프로젝트 규칙 |
 | 스킬 | apple-notes | Apple 메모 읽기·검색·작성 | 공식 원본; memo; macOS Automation 승인 | `H/skills/apple/apple-notes/` | `$(brew --prefix)/bin/memo` |
 | 스킬 | apple-reminders | Apple 미리 알림 관리 | 공식 원본; remindctl; 미리 알림 승인 | `H/skills/apple/apple-reminders/` | `$(brew --prefix)/bin/remindctl` |
 | 스킬 | findmy | 나의 찾기 기기·AirTag 확인 | 공식 원본; 나의 찾기·iCloud; 화면 권한 | `H/skills/apple/findmy/` | macOS 기본 앱 |
@@ -42,7 +41,6 @@
 | 스킬 | gif-search | Tenor GIF 검색·다운로드 | 공식 원본; curl·jq·Tenor API key | `H/skills/media/gif-search/` | `$(brew --prefix)/bin/jq`; key는 `H/.env` |
 | 스킬 | songsee | 오디오 스펙트럼 분석 | 공식 원본; Go·songsee; ffmpeg 선택 | `H/skills/media/songsee/` | `$(go env GOPATH)/bin/songsee` |
 | 스킬 | youtube-content | YouTube 자막을 요약·콘텐츠로 변환 | 공식 원본; youtube-transcript-api; Hermes PM extra | `H/skills/media/youtube-content/` | Hermes PM 관리 환경 또는 격리 helper `.venv/` |
-| 스킬 | naver-blog-production | 네이버 블로그 제작·예약 검증 | 일반화한 커스텀; 자신의 블로그 로그인·운영 지침 | `H/skills/naver-blog-production/` | 브라우저 개인 프로필; 프로젝트 `AGENTS.md` |
 | 스킬 | obsidian | Obsidian vault 노트 작업 | 공식 원본; Obsidian 앱·본인 vault | `H/skills/note-taking/obsidian/` | `/Applications/Obsidian.app`; 선택한 vault |
 | 스킬 | airtable | Airtable 레코드 조회·수정 | 공식 원본; curl·Airtable PAT | `H/skills/productivity/airtable/` | macOS curl; PAT는 `H/.env` |
 | 스킬 | box | Box 파일·권한·메타데이터 관리 | 공식 원본; Box CLI·OAuth | `H/skills/productivity/box/` | `H/tools/box-cli/` |
