@@ -1,0 +1,467 @@
+{
+  "review_date": "2026-10-08",
+  "baseline_commit": "b856ed4",
+  "scope": "Requested items 1, 2, 3, 5 only: documentation, installation inventory, configuration data and existing verification records",
+  "excluded": [
+    "item 4: installer/adapter source-code review",
+    "test source-code review or test execution",
+    "any installer apply, including isolated homes",
+    "live profile, model or UI changes",
+    "external browser operation",
+    "commit, push or publication"
+  ],
+  "reviewer": "single Hermes parent; no subagent or new independent review",
+  "read_method": "Markdown and configuration files read in full; existing JSON record claims parsed; long historical raw execution logs excluded from this documentation review",
+  "inspection": {
+    "kind": "static documentation/data consistency only; no repository scripts or tests executed",
+    "inventory": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "5769e60cf0426a8e2c5c112378fcef582313f03638bc58761c2a7a268abbf624",
+        "lines": 23
+      },
+      {
+        "path": "INSTALL-LIST.md",
+        "sha256": "9b024a4f58571281086f84ff30302d686169afec498dc049b0f9c658a322ca6d",
+        "lines": 83
+      },
+      {
+        "path": "INSTALL_FOR_AGENTS.md",
+        "sha256": "8f160cbf14a0e62c3d44b82bc994dd90ab92f2a1ada71d4201c80e55576f6546",
+        "lines": 91
+      },
+      {
+        "path": "README.md",
+        "sha256": "17ddec34b6aa1be18bafac77c5eb24f884527b04c4c9110632d798732ba2cd26",
+        "lines": 34
+      },
+      {
+        "path": "docs/browsers.md",
+        "sha256": "6befd211bf8abbcb482fa04c27ce9b363a17ffcd86ec1edcf26e535a0902adca",
+        "lines": 43
+      },
+      {
+        "path": "docs/desktop-ui.md",
+        "sha256": "44b778a41986f56d57ff3f973c66ce7538b6db1d82a6726a498912a4aca2d047",
+        "lines": 38
+      },
+      {
+        "path": "docs/global-rules.md",
+        "sha256": "55b03486c4eaae94275445556e8dd6524bb52f9c8eb39b6784635f54bda593f9",
+        "lines": 37
+      },
+      {
+        "path": "docs/model-routing.md",
+        "sha256": "0164d8b024a65c1c3c787d755ee8453e58a701a19d8d0f1abdcf8bd78d380b3c",
+        "lines": 172
+      },
+      {
+        "path": "docs/provider-usage.md",
+        "sha256": "3d98fb566c93ad356d2e3e3b6a69e5bf9f75763bd6d3d533bf86d4be1608c417",
+        "lines": 35
+      },
+      {
+        "path": "docs/sources.md",
+        "sha256": "f31216a6ca305c31a1f1485a8cac1ea1cdf0eaa6f7c5f0c4c3a8bc8dfea8d3c5",
+        "lines": 12
+      },
+      {
+        "path": "docs/verification.md",
+        "sha256": "8c983f1d198f4dc7fcb542f616bbb07fffb9c4989142665e6b53092b26c2b3c3",
+        "lines": 46
+      },
+      {
+        "path": "manifest.json",
+        "sha256": "52d9fdd1873696d03c9836728743c9a77573f90e2bf4c95da23abc5f353d4431",
+        "lines": 693
+      },
+      {
+        "path": "project-records/2026-10-07-provider-usage-filter.json",
+        "sha256": "a274f7737bc92396d15c64ab73e85fdf0f7bac7498753c05b8f5a10aeba2deea",
+        "lines": 53
+      },
+      {
+        "path": "project-records/2026-10-08-category-routing.json",
+        "sha256": "1de1980b0433d619d03daf5fba4350f5030bebaf3fbaf1bdbdf3b6cd6bd633e4",
+        "lines": 58
+      },
+      {
+        "path": "project-records/2026-10-08-document-skills-checks.json",
+        "sha256": "e7b79538b3ac8a37e870666a2c0f2a633e2bf659667f96f8621bdda7fc76d899",
+        "lines": 37
+      },
+      {
+        "path": "project-records/2026-10-08-full-review.json",
+        "sha256": "40fdff876f7cb505e8797dc39f5e6926f1c6c547512bfdc78001f04b26fa04bd",
+        "lines": 380
+      },
+      {
+        "path": "project-records/2026-10-08-gpt-claude-only.json",
+        "sha256": "41189dd28dc490095dbe7fa163d2bb3df8c06b6bb04ae7654fc5f49d199c18af",
+        "lines": 14
+      },
+      {
+        "path": "project-records/2026-10-08-gpt-fallback.json",
+        "sha256": "e89bbd1fc87ec788c61ad907df9125e1926c3a9790771eb2438416824aeba493",
+        "lines": 68
+      },
+      {
+        "path": "project-records/2026-10-08-model-routing.json",
+        "sha256": "85b7568879504c7bafb0088c5846efb178c4a3358ad262fbc55d5c72849309e9",
+        "lines": 80
+      },
+      {
+        "path": "project-records/2026-10-08-opus-final.json",
+        "sha256": "42687ea4b77539d969b3246b51f0584d58589e058cf6062a40d2a941d8157c3f",
+        "lines": 111
+      },
+      {
+        "path": "project-records/2026-10-08-routing-candidate-cleanup.json",
+        "sha256": "1d5b6a9ba136de1da8ef396d9fe6da60fbbdaea61c7807d6393c40f87487824d",
+        "lines": 28
+      },
+      {
+        "path": "project-records/2026-10-08-routing-presets.json",
+        "sha256": "07d7dd457d121c17d69905d714ddf9a4fb02fd16c98a23eedaa7c9984e7d8970",
+        "lines": 126
+      },
+      {
+        "path": "project-records/2026-10-08-user-intent-checks.json",
+        "sha256": "9110f84cee956958aca7a5ec989e8595796b559507408497523ecb1e30b1ce0d",
+        "lines": 14
+      },
+      {
+        "path": "project-records/2026-10-08-user-intent-profile.json",
+        "sha256": "a38e8ecb9d6fb3b4d54e489721f39ff82cd01a9c2e02468bc2b84e9d6899eba1",
+        "lines": 8
+      },
+      {
+        "path": "reports/2026-10-08-document-skills.md",
+        "sha256": "76f9293c99dc2535f207eb1123615da7496ffd3218ba4b92a3ecb087586fafcf",
+        "lines": 19
+      },
+      {
+        "path": "reports/2026-10-08-full-review.md",
+        "sha256": "5d435037b7ba231d4d30a352d5722ec8dc1962d0d9c8424a1a2afdfd2f51ba9a",
+        "lines": 53
+      },
+      {
+        "path": "reports/2026-10-08-user-intent.md",
+        "sha256": "d095175fdefcb60345f4c8a31bc127cf309d1f44fa0d719db78652386df99cd6",
+        "lines": 22
+      },
+      {
+        "path": "routing-presets/claude-generous.json",
+        "sha256": "1e003ee9173d23dc34f9171ca4c42015cd8616ce0d21e154a15cb9ba9bf98b12",
+        "lines": 299
+      },
+      {
+        "path": "routing-presets/gpt-generous.json",
+        "sha256": "5c4f59500539da8a2cef21e08146c9ca2d8ee6c37536306213a36a4533a02f7d",
+        "lines": 299
+      },
+      {
+        "path": "routing-snapshot.json",
+        "sha256": "6b3461212c5c811dada5555046db662dec69a23dd70a3f459daa2c70145b20a8",
+        "lines": 298
+      },
+      {
+        "path": "skills/desktop-app-provisioning/SKILL.md",
+        "sha256": "077350707728ad2032e9b10611e7c9766bed3ce4768c5592f26c784a8801eeb9",
+        "lines": 20
+      },
+      {
+        "path": "skills/naver-blog-production/SKILL.md",
+        "sha256": "dcd29353f261d66819c87bf79df0dbf0819d949bc0d9d6c9515ceadfbad3b8cb",
+        "lines": 21
+      },
+      {
+        "path": "skills/read-model-performance-safety/SKILL.md",
+        "sha256": "a83d8f82c02e7e3092607450503dd427355d1121dba814044fa34a070e981e6f",
+        "lines": 20
+      },
+      {
+        "path": "templates/aside-browser.md",
+        "sha256": "f59d1d666a6516689a802d569138c9f382e4c1e2794eb12824e3f25f2597b22b",
+        "lines": 5
+      },
+      {
+        "path": "templates/user-intent.md",
+        "sha256": "0fc9c0674b32b3543a9e4218f9e0a50a8d38636aca666181cbba0be03bc64b05",
+        "lines": 3
+      }
+    ],
+    "reviewed_file_count": 35,
+    "comparison_files": [
+      "../pycoding-prompt/README.md",
+      "../pycoding-prompt/AGENTS.md",
+      "../pycoding-prompt/project_setup_docs.md"
+    ],
+    "manifest": {
+      "count": 61,
+      "upstream": 58,
+      "custom": 3,
+      "table_matches_manifest": true,
+      "manifest_duplicate_names": false,
+      "humanizer_present": true,
+      "cleaner_documented_as_omh": true
+    },
+    "routing": {
+      "categories_per_preset": [
+        12,
+        12
+      ],
+      "different_categories": [
+        "writing",
+        "visual-engineering",
+        "artistry",
+        "capable",
+        "deep-work"
+      ],
+      "category_efforts_equal": true,
+      "fallback_fields_equal": true,
+      "legacy_matches_claude": true,
+      "cli_matches": {
+        "claude": {
+          "command_count": 12,
+          "all_match": true
+        },
+        "gpt": {
+          "command_count": 12,
+          "all_match": true
+        }
+      }
+    },
+    "local_link_errors": [],
+    "tracked_diff_sha256_before_report": "bdaf21c6d8e2f45d53c05e477a6f794008a3f713509ae43019b35648d8231bf7",
+    "git_status_before_report": " M INSTALL_FOR_AGENTS.md\n M README.md\n?? project-records/2026-10-08-full-review.json\n?? reports/2026-10-08-full-review.md\n"
+  },
+  "findings": [
+    {
+      "id": "D1",
+      "priority": "P2",
+      "confidence": "high",
+      "type": "documentation_state",
+      "path": "docs/verification.md",
+      "line_range": [
+        3,
+        15
+      ],
+      "related_range": [
+        44,
+        46
+      ],
+      "evidence": "Top summary is dated 2026-10-07 and says all OMH chains are defaults, while docs/model-routing.md and the current presets are customized. Existing 2026-10-08 records already distinguish actual Fable and Sol responses from mocked failover; the overview does not summarize this newer state.",
+      "recommendation": "Summarize current repository state and retain dated earlier observations as history; do not change or rerun evidence."
+    },
+    {
+      "id": "D2",
+      "priority": "P3",
+      "confidence": "high",
+      "type": "direction_and_concision",
+      "path": "README.md",
+      "line_range": [
+        9,
+        15
+      ],
+      "related_paths": [
+        "INSTALL_FOR_AGENTS.md:56",
+        "docs/model-routing.md:38-105"
+      ],
+      "evidence": "The copyable installation request repeats numerous implementation and acceptance details already owned by dedicated guides; the installation guide repeats the routing policy and the routing guide interleaves current policy and multiple historical changes.",
+      "recommendation": "Keep one concise goal-directed setup request, the ARM target and necessary user choices; keep execution details in their owning guides and historical evidence in records. Do not remove functional requirements or add a new menu of mandatory choices."
+    },
+    {
+      "id": "D3",
+      "priority": "P3",
+      "confidence": "medium",
+      "type": "instruction_ambiguity",
+      "path": "INSTALL-LIST.md",
+      "line_range": [
+        12,
+        12
+      ],
+      "related_paths": [
+        "docs/browsers.md:30-39",
+        "templates/aside-browser.md:3-5"
+      ],
+      "evidence": "Chrome/Edge/Safari are described as using existing logged-in browsers, while global browser actions are Aside-only; the browser guide also describes CDP and GUI paths without explicitly limiting that section to source-profile/import or native-app work.",
+      "recommendation": "Clarify the existing browsers as import sources and preserve Aside direct repl as the operating browser. Do not impose one-to-one source profile migration beyond the user-selected scope, install new browser stacks, or enable alternate browser control."
+    },
+    {
+      "id": "D4",
+      "priority": "P3",
+      "confidence": "high",
+      "type": "superseded_review_question",
+      "path": "reports/2026-10-08-full-review.md",
+      "line_range": [
+        31,
+        35
+      ],
+      "evidence": "The prior Intel support question still appears as open, but the current README and installation guide explicitly target ARM64 MacBooks and exclude Intel from this guide.",
+      "recommendation": "Mark that earlier question resolved by scope clarification; no Intel research or hardware validation is needed for this review."
+    }
+  ],
+  "direction_verdict": {
+    "status": "aligned_with_documentation_cleanup_needed",
+    "reason": "Hermes environment setup remains separate from project/product document criteria. Shared skill preparation is intentional, not a duplicate policy. Runtime failure/installation correctness and release approval are not assessed in this pass."
+  },
+  "source_policy_note": "Source commits are existing implementation/provenance data, not a user-approved frozen-file installation requirement; no new pinning/rejection obligation or release hold imposed.",
+  "desktop_note": "Window dimensions, UI scale and chat-text scale alignment with existing ChatGPT/Claude desktop apps; no model or account configuration; existence does not by itself authorize removal or live application.",
+  "historical_test_results": "Existing records only, not newly executed or a new code review",
+  "product_files_changed_this_review": false,
+  "live_settings_changed_this_review": false,
+  "publication_performed": false,
+  "file_reviews": [
+    {
+      "path": "AGENTS.md",
+      "judgment": "유지: 이 저장소의 작업·보고서 규칙이며 다른 프로젝트나 SOUL에 배포하는 보고서 규칙이 아님"
+    },
+    {
+      "path": "INSTALL-LIST.md",
+      "judgment": "정리 후보: ARM 대상에서 Intel 경로 설명 불필요; 기존 브라우저 역할을 가져오기 원본으로 명확히 표시. 스킬 목록은 manifest와 일치"
+    },
+    {
+      "path": "INSTALL_FOR_AGENTS.md",
+      "judgment": "정리 후보: ARM 대상과 환경 보존·로그인 경계 유지; 긴 라우팅 설명은 전용 문서와 중복"
+    },
+    {
+      "path": "README.md",
+      "judgment": "정리 후보: 설치 목적·필수 구성·사용자 선택 중심으로 요청문 단축; 제품 전체 구성 완료를 뜻하지 않음"
+    },
+    {
+      "path": "docs/browsers.md",
+      "judgment": "정리 후보: 기존 브라우저 절의 가져오기·앱 제어 역할 명확화; Aside 직접 repl 및 포커스 보존 유지"
+    },
+    {
+      "path": "docs/desktop-ui.md",
+      "judgment": "유지·요약 가능: 창·UI·글자 크기 맞춤이며 모델/계정 설정 아님; 실제 적용 권한과 무관"
+    },
+    {
+      "path": "docs/global-rules.md",
+      "judgment": "유지: 사용자 의도와 Aside만 배포; 레거시 개인 보고서 문구 보존은 기존 환경 보호"
+    },
+    {
+      "path": "docs/model-routing.md",
+      "judgment": "정리 후보: 현재 정책·버전 선택·확인과 과거 변경 이력 분리. 문서 CLI와 프리셋 값 일치"
+    },
+    {
+      "path": "docs/provider-usage.md",
+      "judgment": "유지: Hermes 사용량 표시 설정; 앱별 파일 위치·저장 선택 보존 설명은 동작 차이에 필요한 내용. 코드는 미검토"
+    },
+    {
+      "path": "docs/sources.md",
+      "judgment": "유지·요약 가능: 출처·버전 정보는 설치 자료. 고정 방식은 사용자 목적이나 새 배포 조건으로 해석하지 않음"
+    },
+    {
+      "path": "docs/verification.md",
+      "judgment": "갱신 필요: 2026-10-07 기본 체인 요약과 2026-10-08 사용자 지정 상태를 구분"
+    },
+    {
+      "path": "manifest.json",
+      "judgment": "유지: 목록 61개(공식 58·커스텀 3)와 표 일치; 실제 설치 동작 검토는 제외"
+    },
+    {
+      "path": "project-records/2026-10-07-provider-usage-filter.json",
+      "judgment": "과거 근거 유지: 렌더러의 합성 입력 검사·실제 상태바 관찰·팝업/알림/재실행 미검증 구분"
+    },
+    {
+      "path": "project-records/2026-10-08-category-routing.json",
+      "judgment": "과거 근거 유지: 네 분류 설정 대조와 mock 공통 fallback, 실제 제공자 호출 없음"
+    },
+    {
+      "path": "project-records/2026-10-08-document-skills-checks.json",
+      "judgment": "과거 근거 유지: 두 저장소 당시 검사와 스킬 로드·SOUL 선택 삭제, 새 세션 미검증 구분"
+    },
+    {
+      "path": "project-records/2026-10-08-full-review.json",
+      "judgment": "과거 근거 유지: F1 철회 반영; Intel 질문은 현재 범위 명시로 해소; 당시 격리 설치를 이번 실행으로 해석하지 않음"
+    },
+    {
+      "path": "project-records/2026-10-08-gpt-claude-only.json",
+      "judgment": "과거 근거 유지: 49개 시험과 당시 GPT형 설정 대조, 실제 제공자 호출 없음"
+    },
+    {
+      "path": "project-records/2026-10-08-gpt-fallback.json",
+      "judgment": "과거 근거 유지: 다섯 GPT 시작 경로의 mock 검사; 실제 모델 호출 없음"
+    },
+    {
+      "path": "project-records/2026-10-08-model-routing.json",
+      "judgment": "과거 근거 유지: 통제 fallback과 Fable 실제 응답·이전 독립 검토 구분; 현재 전체 독립 검토 아님"
+    },
+    {
+      "path": "project-records/2026-10-08-opus-final.json",
+      "judgment": "과거 근거 유지: Opus 최종 fallback의 mock 경로; 실제 계정 전환 증거 아님"
+    },
+    {
+      "path": "project-records/2026-10-08-routing-candidate-cleanup.json",
+      "judgment": "과거 근거 유지: Sol 실제 응답·배정 medium·관측 추론 누락·한도 전환 없음 구분"
+    },
+    {
+      "path": "project-records/2026-10-08-routing-presets.json",
+      "judgment": "과거 근거 유지: 글·문서 변경 전 네 분류 전환 기록; 현 프리셋 전체 상태로 덮어 해석하지 않음"
+    },
+    {
+      "path": "project-records/2026-10-08-user-intent-checks.json",
+      "judgment": "과거 근거 유지: 당시 검사 성공 기록만 대조; 이번 시험 실행 아님"
+    },
+    {
+      "path": "project-records/2026-10-08-user-intent-profile.json",
+      "judgment": "과거 근거 유지: 당시 의도 규칙 파일 일치·브라우저 정책 보존과 새 세션 미확인 구분"
+    },
+    {
+      "path": "reports/2026-10-08-document-skills.md",
+      "judgment": "과거 기록 유지: 당시 스킬 로드·SOUL 선택 삭제와 미확인 범위 구분; 게시 전 상태를 현재 상태로 해석하지 않음"
+    },
+    {
+      "path": "reports/2026-10-08-full-review.md",
+      "judgment": "과거 기록 유지·후속 정정 대상: P1 및 배포 보류 철회 반영됨. Intel 질문은 현재 ARM 대상 명시로 해소. 코드 finding은 이번에 재검토하지 않음"
+    },
+    {
+      "path": "reports/2026-10-08-user-intent.md",
+      "judgment": "과거 기록 유지: 규칙 파일 반영과 새 세션 행동 검증 구분, 후속 보고서 섹션 삭제 링크 존재"
+    },
+    {
+      "path": "routing-presets/claude-generous.json",
+      "judgment": "유지: 열두 분류·공통 fallback·추론·Claude형 문서값 대조 일치"
+    },
+    {
+      "path": "routing-presets/gpt-generous.json",
+      "judgment": "유지: 열두 분류·공통 fallback·추론·GPT형 문서값 대조 일치"
+    },
+    {
+      "path": "routing-snapshot.json",
+      "judgment": "유지: Claude형 호환 자료임을 안내하며 preset 속성을 제외한 값 일치"
+    },
+    {
+      "path": "skills/desktop-app-provisioning/SKILL.md",
+      "judgment": "유지: 앱·브라우저 이전 능력 준비; 실제 설치나 이전의 자동 승인 아님"
+    },
+    {
+      "path": "skills/naver-blog-production/SKILL.md",
+      "judgment": "유지: 일반화한 작업 스킬이며 실제 블로그 계정·운영 지침은 해당 프로젝트에 위임"
+    },
+    {
+      "path": "skills/read-model-performance-safety/SKILL.md",
+      "judgment": "유지: 일반화한 검토 스킬 준비; 제품의 데이터·권한 계약을 전역 배포하는 내용 아님"
+    },
+    {
+      "path": "templates/aside-browser.md",
+      "judgment": "유지: Hermes의 브라우저 실행 경로와 프로필 경계; 프로젝트 문서 기준과 역할 다름"
+    },
+    {
+      "path": "templates/user-intent.md",
+      "judgment": "유지: 목적·방법 구분 및 정정 시 재검토 원칙; 프로젝트 보고서 문체나 구조 규정 없음"
+    }
+  ],
+  "delivery_verification": {
+    "reviewed_files_unchanged": true,
+    "prior_tracked_diff_preserved": true,
+    "file_review_coverage_complete": true,
+    "file_review_count": 35,
+    "report_local_links_missing": [],
+    "json_parse": "pass",
+    "git_diff_check": "pass",
+    "repository_scripts_or_tests_executed": false
+  }
+}

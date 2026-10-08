@@ -1,0 +1,380 @@
+{
+  "baseline_commit": "b856ed4588f8bf23606b9f7c636be642ad8599a2",
+  "probes": {
+    "untracked_source_file": {
+      "commit_check": "accepted",
+      "tracked_diff_check": "accepted",
+      "untracked_file_copied": true,
+      "fixture_payload": "harmless text; not executed"
+    },
+    "mjs_privacy_path_check": {
+      "injected_path_is_synthetic": true,
+      "expected": "reject personal-home pattern",
+      "actual": "PASS: 61 skills; one installation table; public paths, links and credential-pattern checks; 49 files",
+      "checker_accepted": true
+    }
+  },
+  "files": [
+    {
+      "path": ".github/workflows/check.yml",
+      "lines": 14,
+      "sha256": "033a43253e3946c8fe2c1a5f9db90c43893f89db503adc04414ca46dc4c4f26e"
+    },
+    {
+      "path": ".gitignore",
+      "lines": 8,
+      "sha256": "8b3528563bac584a7a1bdf07105480657959f3b2338c432efa8522590dbbb366"
+    },
+    {
+      "path": "AGENTS.md",
+      "lines": 23,
+      "sha256": "5769e60cf0426a8e2c5c112378fcef582313f03638bc58761c2a7a268abbf624"
+    },
+    {
+      "path": "INSTALL-LIST.md",
+      "lines": 83,
+      "sha256": "9b024a4f58571281086f84ff30302d686169afec498dc049b0f9c658a322ca6d"
+    },
+    {
+      "path": "INSTALL_FOR_AGENTS.md",
+      "lines": 91,
+      "sha256": "df01934a6bc50f38c7825bd8cffd10fc2361f8dde75066cf639001d135aa81bd"
+    },
+    {
+      "path": "LICENSE",
+      "lines": 21,
+      "sha256": "64646f12918705b64346f33ce47b2a21afdd12ac1b6ab1b23c8fa621e110e2e4"
+    },
+    {
+      "path": "README.md",
+      "lines": 32,
+      "sha256": "d5cd0a64a22696d4249b4746ff44a4f1a9f2311c407803d6ba175b53f944c357"
+    },
+    {
+      "path": "docs/browsers.md",
+      "lines": 43,
+      "sha256": "6befd211bf8abbcb482fa04c27ce9b363a17ffcd86ec1edcf26e535a0902adca"
+    },
+    {
+      "path": "docs/desktop-ui.md",
+      "lines": 38,
+      "sha256": "44b778a41986f56d57ff3f973c66ce7538b6db1d82a6726a498912a4aca2d047"
+    },
+    {
+      "path": "docs/global-rules.md",
+      "lines": 37,
+      "sha256": "55b03486c4eaae94275445556e8dd6524bb52f9c8eb39b6784635f54bda593f9"
+    },
+    {
+      "path": "docs/model-routing.md",
+      "lines": 172,
+      "sha256": "0164d8b024a65c1c3c787d755ee8453e58a701a19d8d0f1abdcf8bd78d380b3c"
+    },
+    {
+      "path": "docs/provider-usage.md",
+      "lines": 35,
+      "sha256": "3d98fb566c93ad356d2e3e3b6a69e5bf9f75763bd6d3d533bf86d4be1608c417"
+    },
+    {
+      "path": "docs/sources.md",
+      "lines": 12,
+      "sha256": "f31216a6ca305c31a1f1485a8cac1ea1cdf0eaa6f7c5f0c4c3a8bc8dfea8d3c5"
+    },
+    {
+      "path": "docs/verification.md",
+      "lines": 46,
+      "sha256": "8c983f1d198f4dc7fcb542f616bbb07fffb9c4989142665e6b53092b26c2b3c3"
+    },
+    {
+      "path": "manifest.json",
+      "lines": 693,
+      "sha256": "52d9fdd1873696d03c9836728743c9a77573f90e2bf4c95da23abc5f353d4431"
+    },
+    {
+      "path": "project-records/2026-10-07-provider-usage-filter.json",
+      "lines": 53,
+      "sha256": "a274f7737bc92396d15c64ab73e85fdf0f7bac7498753c05b8f5a10aeba2deea"
+    },
+    {
+      "path": "project-records/2026-10-08-category-routing.json",
+      "lines": 58,
+      "sha256": "1de1980b0433d619d03daf5fba4350f5030bebaf3fbaf1bdbdf3b6cd6bd633e4"
+    },
+    {
+      "path": "project-records/2026-10-08-document-skills-checks.json",
+      "lines": 37,
+      "sha256": "e7b79538b3ac8a37e870666a2c0f2a633e2bf659667f96f8621bdda7fc76d899"
+    },
+    {
+      "path": "project-records/2026-10-08-gpt-claude-only.json",
+      "lines": 14,
+      "sha256": "41189dd28dc490095dbe7fa163d2bb3df8c06b6bb04ae7654fc5f49d199c18af"
+    },
+    {
+      "path": "project-records/2026-10-08-gpt-fallback.json",
+      "lines": 68,
+      "sha256": "e89bbd1fc87ec788c61ad907df9125e1926c3a9790771eb2438416824aeba493"
+    },
+    {
+      "path": "project-records/2026-10-08-model-routing.json",
+      "lines": 80,
+      "sha256": "85b7568879504c7bafb0088c5846efb178c4a3358ad262fbc55d5c72849309e9"
+    },
+    {
+      "path": "project-records/2026-10-08-opus-final.json",
+      "lines": 111,
+      "sha256": "42687ea4b77539d969b3246b51f0584d58589e058cf6062a40d2a941d8157c3f"
+    },
+    {
+      "path": "project-records/2026-10-08-routing-candidate-cleanup.json",
+      "lines": 28,
+      "sha256": "1d5b6a9ba136de1da8ef396d9fe6da60fbbdaea61c7807d6393c40f87487824d"
+    },
+    {
+      "path": "project-records/2026-10-08-routing-presets.json",
+      "lines": 126,
+      "sha256": "07d7dd457d121c17d69905d714ddf9a4fb02fd16c98a23eedaa7c9984e7d8970"
+    },
+    {
+      "path": "project-records/2026-10-08-user-intent-checks.json",
+      "lines": 14,
+      "sha256": "9110f84cee956958aca7a5ec989e8595796b559507408497523ecb1e30b1ce0d"
+    },
+    {
+      "path": "project-records/2026-10-08-user-intent-profile.json",
+      "lines": 8,
+      "sha256": "a38e8ecb9d6fb3b4d54e489721f39ff82cd01a9c2e02468bc2b84e9d6899eba1"
+    },
+    {
+      "path": "reports/2026-10-08-document-skills.md",
+      "lines": 19,
+      "sha256": "76f9293c99dc2535f207eb1123615da7496ffd3218ba4b92a3ecb087586fafcf"
+    },
+    {
+      "path": "reports/2026-10-08-user-intent.md",
+      "lines": 22,
+      "sha256": "d095175fdefcb60345f4c8a31bc127cf309d1f44fa0d719db78652386df99cd6"
+    },
+    {
+      "path": "routing-presets/claude-generous.json",
+      "lines": 299,
+      "sha256": "1e003ee9173d23dc34f9171ca4c42015cd8616ce0d21e154a15cb9ba9bf98b12"
+    },
+    {
+      "path": "routing-presets/gpt-generous.json",
+      "lines": 299,
+      "sha256": "5c4f59500539da8a2cef21e08146c9ca2d8ee6c37536306213a36a4533a02f7d"
+    },
+    {
+      "path": "routing-snapshot.json",
+      "lines": 298,
+      "sha256": "6b3461212c5c811dada5555046db662dec69a23dd70a3f459daa2c70145b20a8"
+    },
+    {
+      "path": "scripts/check.py",
+      "lines": 52,
+      "sha256": "6ca5f03773e60bbcbcfdcd7827d3669bbb9827264446f4d218c456e5b1063b68"
+    },
+    {
+      "path": "scripts/configure_delegation_reasoning.py",
+      "lines": 80,
+      "sha256": "43dfc62ea8955049b087d13f08e1c010d5196a6d87318c842ce692c7acb291b8"
+    },
+    {
+      "path": "scripts/configure_gpt_fallback.py",
+      "lines": 94,
+      "sha256": "fee0838504dba85a5c0e6990312ff2c9528d4fec7dad8de2e32275a66e5417c4"
+    },
+    {
+      "path": "scripts/configure_provider_usage.py",
+      "lines": 149,
+      "sha256": "05417ed6eb3328b50184746893c0ff7c2f750d2b9fdf629b4398fb28d1aa8f59"
+    },
+    {
+      "path": "scripts/install_global_rules.py",
+      "lines": 89,
+      "sha256": "5061c79b0478801693b61a7d84d10e15dea9f72b64291b7c78d1f03610cb16aa"
+    },
+    {
+      "path": "scripts/install_skills.py",
+      "lines": 139,
+      "sha256": "2ddf1e49dcd10cbb69f5df12a2ee0d0297b3fb4cdfa57356aebe2cb721086a41"
+    },
+    {
+      "path": "skills/desktop-app-provisioning/SKILL.md",
+      "lines": 20,
+      "sha256": "077350707728ad2032e9b10611e7c9766bed3ce4768c5592f26c784a8801eeb9"
+    },
+    {
+      "path": "skills/naver-blog-production/SKILL.md",
+      "lines": 21,
+      "sha256": "dcd29353f261d66819c87bf79df0dbf0819d949bc0d9d6c9515ceadfbad3b8cb"
+    },
+    {
+      "path": "skills/read-model-performance-safety/SKILL.md",
+      "lines": 20,
+      "sha256": "a83d8f82c02e7e3092607450503dd427355d1121dba814044fa34a070e981e6f"
+    },
+    {
+      "path": "templates/aside-browser.md",
+      "lines": 5,
+      "sha256": "f59d1d666a6516689a802d569138c9f382e4c1e2794eb12824e3f25f2597b22b"
+    },
+    {
+      "path": "templates/user-intent.md",
+      "lines": 3,
+      "sha256": "0fc9c0674b32b3543a9e4218f9e0a50a8d38636aca666181cbba0be03bc64b05"
+    },
+    {
+      "path": "tests/provider_usage_dom.mjs",
+      "lines": 139,
+      "sha256": "22f7a285dd503151e14a4f6114bc648d2630a5107cc7f767f80595b7f8dfde70"
+    },
+    {
+      "path": "tests/test_configure_delegation_reasoning.py",
+      "lines": 105,
+      "sha256": "f2a3e89380d349b57f3cace87d203ff8c7fc8c8a7ebbc7c6137fc091b7a19482"
+    },
+    {
+      "path": "tests/test_configure_gpt_fallback.py",
+      "lines": 65,
+      "sha256": "39074a062545fd68ae7c6124ff8567daa10f40a4a6149628f4f22293c106a7c5"
+    },
+    {
+      "path": "tests/test_configure_provider_usage.py",
+      "lines": 195,
+      "sha256": "2b4e5859244357a09244e45ac0dbe13c3975a92e7b7ad49a7fc46e9f437b271f"
+    },
+    {
+      "path": "tests/test_install_global_rules.py",
+      "lines": 169,
+      "sha256": "09d054b2e07fb473f616772392c8cd18453e5646845f5998804a12ae8a784adb"
+    },
+    {
+      "path": "tests/test_install_skills.py",
+      "lines": 83,
+      "sha256": "7e1ffebf6d515dae8663db29a58dcab4f198f493ca37ae3d1c4717f64f934d5d"
+    },
+    {
+      "path": "tests/test_routing_presets.py",
+      "lines": 76,
+      "sha256": "d631ff90fa3eed92ad9aecfd75497c4a1ead6c4527facd72235e8c0e0dee23aa"
+    }
+  ],
+  "file_count": 49,
+  "line_count": 4386,
+  "clean_install": {
+    "source_commit": "b2860025adc1478eca63a0b2a82440798eadbfd1",
+    "source": "existing clean pinned checkout; not a fresh network download",
+    "preview_wrote_home": false,
+    "first_added": 61,
+    "repeat_unchanged": 61,
+    "bundle_files_compared": 320,
+    "licenses_compared": 61,
+    "all_bytes_equal": true,
+    "temporary_home_removed_after_probe": true
+  },
+  "checks": {
+    "command": "python3 scripts/check.py && python3 -m unittest discover -s tests -v && git diff --check",
+    "exit_code": 0,
+    "output": "PASS: 61 skills; one installation table; public paths, links and credential-pattern checks; 50 files\ntest_child_preserves_each_category_effort (test_configure_delegation_reasoning.DelegationReasoningTests) ... ok\ntest_main_session_keeps_native_resolution (test_configure_delegation_reasoning.DelegationReasoningTests) ... ok\ntest_patch_is_idempotent_and_valid_python (test_configure_delegation_reasoning.DelegationReasoningTests) ... ok\ntest_preview_apply_repeat_and_symlink_refusal (test_configure_delegation_reasoning.DelegationReasoningTests) ... ok\ntest_snapshot_preserves_category_efforts_and_primary_models (test_configure_delegation_reasoning.DelegationReasoningTests) ... ok\ntest_unknown_source_refused (test_configure_delegation_reasoning.DelegationReasoningTests) ... ok\ntest_claude_and_unpinned_routes_unchanged (test_configure_gpt_fallback.GPTFallbackTests) ... ok\ntest_exact_legacy_adapter_upgrades_idempotently (test_configure_gpt_fallback.GPTFallbackTests) ... ok\ntest_gpt_route_prioritizes_claude_without_mutating_config (test_configure_gpt_fallback.GPTFallbackTests) ... ok\ntest_preview_apply_repeat_and_conflict (test_configure_gpt_fallback.GPTFallbackTests) ... ok\ntest_all_targets_validated_before_writes (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_changed_managed_block_rejected (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_crlf_preserved (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_display_filter_runs_in_javascript (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_full_plugin_mounts_with_real_desktop_dependencies (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_hidden_provider_choices_survive_eye_toggles (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_missing_plugin_does_not_create_it (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_partial_install_rejected (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_preview_apply_and_repeat (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_prior_managed_filter_upgrades_without_losing_customization (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_symlink_refused (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_unrelated_customization_preserved (test_configure_provider_usage.UsageFilterTests) ... ok\ntest_adds_browser_rule_to_existing_managed_report (test_install_global_rules.GlobalRulesTests) ... ok\ntest_browser_policy_requires_direct_repl_without_aside_agent (test_install_global_rules.GlobalRulesTests) ... ok\ntest_changed_browser_rule_is_conflict (test_install_global_rules.GlobalRulesTests) ... ok\ntest_changed_intent_rule_preserves_whole_file (test_install_global_rules.GlobalRulesTests) ... ok\ntest_changed_managed_browser_block_is_conflict (test_install_global_rules.GlobalRulesTests) ... ok\ntest_environment_home_and_explicit_home (test_install_global_rules.GlobalRulesTests) ... ok\ntest_existing_unmarked_browser_policy_not_duplicated (test_install_global_rules.GlobalRulesTests) ... ok\ntest_existing_unmarked_intent_policy_not_duplicated (test_install_global_rules.GlobalRulesTests) ... ok\ntest_first_install_and_repeat (test_install_global_rules.GlobalRulesTests) ... ok\ntest_intent_policy_covers_correction_without_mandatory_confirmation (test_install_global_rules.GlobalRulesTests) ... ok\ntest_malformed_intent_markers_are_conflict (test_install_global_rules.GlobalRulesTests) ... ok\ntest_malformed_legacy_report_is_preserved (test_install_global_rules.GlobalRulesTests) ... ok\ntest_malformed_markers_are_conflict (test_install_global_rules.GlobalRulesTests) ... ok\ntest_personal_unmarked_report_policy_is_preserved (test_install_global_rules.GlobalRulesTests) ... ok\ntest_preserves_existing_crlf_bytes (test_install_global_rules.GlobalRulesTests) ... ok\ntest_preserves_existing_text (test_install_global_rules.GlobalRulesTests) ... ok\ntest_preview_does_not_write (test_install_global_rules.GlobalRulesTests) ... ok\ntest_symlink_refused (test_install_global_rules.GlobalRulesTests) ... ok\ntest_conflict_preserves_existing (test_install_skills.InstallTests) ... ok\ntest_duplicate_manifest (test_install_skills.InstallTests) ... ok\ntest_existing_name_other_category (test_install_skills.InstallTests) ... ok\ntest_install_supporting_files_and_license (test_install_skills.InstallTests) ... ok\ntest_manifest_traversal (test_install_skills.InstallTests) ... ok\ntest_preview_does_not_write (test_install_skills.InstallTests) ... ok\ntest_repeat_is_unchanged (test_install_skills.InstallTests) ... ok\ntest_source_symlink_refused (test_install_skills.InstallTests) ... ok\ntest_target_symlink_refused (test_install_skills.InstallTests) ... ok\ntest_documented_commands_match_selected_presets (test_routing_presets.RoutingPresetTests) ... ok\ntest_gpt_restores_previous_astra_positions (test_routing_presets.RoutingPresetTests) ... ok\ntest_legacy_snapshot_stays_claude_compatible (test_routing_presets.RoutingPresetTests) ... ok\ntest_only_five_category_orders_differ (test_routing_presets.RoutingPresetTests) ... ok\ntest_removed_families_are_absent_and_writing_uses_sol_opus (test_routing_presets.RoutingPresetTests) ... ok\ntest_shared_fallbacks_are_identical_and_opus_last (test_routing_presets.RoutingPresetTests) ... ok\n\n----------------------------------------------------------------------\nRan 55 tests in 2.573s\n\nOK",
+    "unittest_count": 55,
+    "skipped": 0
+  },
+  "review_date": "2026-10-08",
+  "scope": "All 49 tracked files at baseline; ignored upstream cache used only for source comparison and an isolated installation. No live-profile writes or product-code edits.",
+  "review_kind": "single-reviewer whole-repository content review and isolated execution; no new independent reviewer",
+  "findings": [
+    {
+      "id": "F1",
+      "priority": null,
+      "status": "withdrawn_as_defect; retained_as_behavior_observation",
+      "confidence": "high",
+      "path": "scripts/install_skills.py",
+      "line_range": [
+        39,
+        55
+      ],
+      "title": "Pinned checkout accepts untracked bundle files",
+      "evidence": "The harmless untracked file passed source_checkout and was copied by install in an isolated Git fixture.",
+      "remediation": null,
+      "correction": "The user did not require a commit-frozen file set. Copying additional files in a skill bundle alone does not establish an installation defect; required support files belong with the skill. Withdraw the reviewer-imposed P1 classification and mandatory rejection policy. Preserve the observation, without changing installer behavior or asserting arbitrary extra files are safe."
+    },
+    {
+      "id": "F2",
+      "priority": "P2",
+      "confidence": "high",
+      "path": "scripts/check.py",
+      "line_range": [
+        36,
+        41
+      ],
+      "title": "Public privacy-pattern scan skips the existing .mjs file",
+      "evidence": "A tracked-file fixture with a synthetic personal-home path appended to tests/provider_usage_dom.mjs still passed checker.main.",
+      "remediation": "Include all supported text source types in path and credential-pattern checks; add a regression test using a synthetic fixture."
+    },
+    {
+      "id": "F3",
+      "priority": "P2",
+      "confidence": "high",
+      "path": "docs/verification.md",
+      "line_range": [
+        3,
+        15
+      ],
+      "title": "Verification overview combines old state with newer configuration",
+      "evidence": "The dated overview says OMH chains are all defaults and cites nine install tests; current docs/model-routing.md and both presets define custom routing, and this review ran 55 tests. Newer verification sections are already present on the same page.",
+      "remediation": "Make the current summary reflect the reviewed revision and label earlier observations as history; retain previous real-call evidence and unverified boundaries."
+    }
+  ],
+  "open_questions": [
+    {
+      "path": "INSTALL_FOR_AGENTS.md",
+      "line_range": [
+        3,
+        3
+      ],
+      "topic": "Intel support is stated too broadly relative to the platform page, while the official installation page still contains a conflicting Intel note.",
+      "sources": [
+        "https://hermes-agent.nousresearch.com/docs/getting-started/platform-support",
+        "https://hermes-agent.nousresearch.com/docs/getting-started/installation"
+      ],
+      "observed_via": "Aside repl, both public pages read directly; supplemental web search returned no results and was not used as evidence",
+      "recommendation": "Keep Apple Silicon as this repository's verified target; distinguish the arm64 bootstrap installer from x64 desktop bundles instead of declaring all Intel Desktop paths unavailable. Intel execution was not tested."
+    }
+  ],
+  "installed_adapter_previews": {
+    "reasoning_guard": "unchanged",
+    "gpt_fallback_adapter": "unchanged",
+    "provider_usage_source": "unchanged",
+    "provider_usage_desktop_mirror": "unchanged",
+    "desktop_mirror_present": true,
+    "live_files_written": false,
+    "existing_process_reload_or_real_failover_verified_this_review": false
+  },
+  "verdict": {
+    "correctness_risk": "previous_F1_release_block_withdrawn; remaining_review_comments_retained",
+    "confidence": "high",
+    "blocking_definition": null,
+    "correction": "Withdraw the redistribution hold based solely on F1. An assistant-selected source-pinning method was incorrectly elevated to a release requirement; the user did not request that restriction. This correction authorizes no product-code, live-installation or publication change.",
+    "spec_axis": {
+      "claim_source": [
+        "README.md",
+        "INSTALL_FOR_AGENTS.md",
+        "AGENTS.md"
+      ],
+      "verdict": "partial",
+      "reason": "Global reporting removal, required skill availability, executor isolation, direct Aside control, preset scope and preserved fallback match the stated direction. F1 is a behavior observation, not a demonstrated violation of the user's installation goal. Remaining privacy-scan and verification-overview comments and unassessed flows are unchanged."
+    }
+  },
+  "not_assessed": [
+    "New Mac end-to-end bootstrap and new-user authentication",
+    "Fresh Hermes session policy loading and behavior",
+    "Real quota failover and observed fallback reasoning",
+    "Running Electron popover and actual threshold notifications",
+    "Desktop sizing and relaunch persistence",
+    "Aside profile migration and focus/keyboard/cursor preservation",
+    "Intel Mac installation",
+    "Current CI result and new independent review"
+  ]
+}

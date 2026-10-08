@@ -1,7 +1,7 @@
 # 브라우저
 
 Hermes의 격리 브라우저와 사용자가 로그인한 브라우저는 다르다. 새 브라우저에 로그인이 없다고 기존 계정이 로그아웃됐다고 판단하지 않는다.
-브라우저 작업은 [전역 규칙](global-rules.md)에 따라 Hermes의 GPT·Claude가 Aside의 `repl`로 직접 수행한다. Aside 자체 AI 에이전트는 사용하지 않으며, Aside 프로필은 각 프로젝트 규칙을 따른다.
+직접 조작·자체 AI 위임 금지·프로젝트별 프로필 경계는 [Aside 규칙](../templates/aside-browser.md)을 따른다. 설치는 [전역 규칙 안내](global-rules.md)에 있다.
 
 ## Aside
 
@@ -21,15 +21,13 @@ hermes mcp add aside --command aside --args mcp
 hermes mcp test aside
 ```
 
-CLI가 PATH에 없다면 `command -v aside`로 확인한 실행 경로를 사용한다. 기존 이름의 MCP가 있으면 먼저 비교한다. MCP 등록 자체는 인증·프로필 선택·실제 조작 성공이 아니다.
-
-`aside exec`, 자연어 작업을 넘기는 `aside "작업 요청"`, MCP의 자체 에이전트 위임 도구는 사용하지 않는다. `repl` 오류가 나도 이 경로로 우회하지 않는다. 연결·프로필·호출 코드를 확인하고 직접 조작을 복구한다. `exec`의 모델 사용량 오류를 `repl` 브라우저 조작 한도로 해석하지 않는다.
+CLI가 PATH에 없다면 `command -v aside`로 실행 경로를 확인한다. 기존 MCP는 비교 후 연결하며, `repl` 오류는 연결·프로필·호출 코드를 진단해 복구한다. 자체 AI로 우회하지 않는다.
 
 설치 검증은 새 Hermes 세션에서 실제 도구 호출이 `repl`인지 확인하고, 선택한 프로필로 이동·입력·결과 읽기를 수행한다. 자체 에이전트가 호출되지 않았는지도 호출 기록으로 확인한다.
 
 ## 기존 Chrome·Edge·Safari
 
-앱 설치는 `/Applications/`에 한다. Hermes의 기본 headless 세션, 사용자 프로필을 연결한 CDP, macOS GUI 제어를 구별한다. 사용 중인 브라우저를 종료하거나 열린 프로필을 자동 복제하지 않는다. Safari는 Chrome CDP 연결 방식으로 처리하지 않는다. 계정 접근에 필요한 권한을 우회하지 않는다.
+기존 브라우저는 프로필 가져오기 원본으로 보존한다. 앱은 `/Applications/`에 설치하며 사용 중인 브라우저를 종료·복제하거나 기본 브라우저를 바꾸지 않는다. 쿠키·비밀번호·복구키를 복사·공개하거나 계정 권한을 우회하지 않는다. Safari를 Chrome CDP 방식으로 연결하지 않는다.
 
 ```sh
 hermes computer-use install
