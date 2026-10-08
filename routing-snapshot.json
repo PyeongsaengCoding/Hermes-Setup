@@ -1,6 +1,6 @@
 {
   "observed_on": "2026-10-08",
-  "scope": "Hermes-native claude-generous compatibility routing; excluded Kimi/Qwen/Gemini; writing uses Sol/Opus medium; shared/main fallback preserved",
+  "scope": "Hermes-native GPT and Claude candidates only; preset-specific ordering and efforts preserved; common fallbacks unchanged",
   "categories": [
     {
       "category": "ultrabrain",
@@ -42,14 +42,9 @@
           "model": "claude-opus-5-5",
           "reasoning_effort": "high",
           "served": true
-        },
-        {
-          "model": "deepseek-flash",
-          "reasoning_effort": "high",
-          "served": false
         }
       ],
-      "chain_text": "gpt-6.1-sol:high, claude-fable-5-1:high, claude-opus-5-5:high, deepseek-flash:high",
+      "chain_text": "gpt-6.1-sol:high, claude-fable-5-1:high, claude-opus-5-5:high",
       "entitlement_shaped": false,
       "origin": "override"
     },
@@ -96,21 +91,11 @@
           "model": "claude-opus-5-5",
           "reasoning_effort": "low",
           "served": true
-        },
-        {
-          "model": "glm-5.3",
-          "reasoning_effort": "low",
-          "served": false
-        },
-        {
-          "model": "deepseek-flash",
-          "reasoning_effort": "low",
-          "served": false
         }
       ],
-      "chain_text": "claude-opus-5-5:low, glm-5.3:low, deepseek-flash:low",
-      "entitlement_shaped": true,
-      "origin": "default"
+      "chain_text": "claude-opus-5-5:low",
+      "entitlement_shaped": false,
+      "origin": "override"
     },
     {
       "category": "quick",
@@ -134,14 +119,9 @@
           "model": "gpt-6-astra",
           "reasoning_effort": "low",
           "served": true
-        },
-        {
-          "model": "glm-5.3-flash",
-          "reasoning_effort": "low",
-          "served": false
         }
       ],
-      "chain_text": "gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, gpt-6-astra:low, glm-5.3-flash:low",
+      "chain_text": "gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, gpt-6-astra:low",
       "entitlement_shaped": false,
       "origin": "override"
     },
@@ -231,14 +211,9 @@
           "model": "gpt-6-astra",
           "reasoning_effort": "medium",
           "served": true
-        },
-        {
-          "model": "glm-5.3",
-          "reasoning_effort": "medium",
-          "served": false
         }
       ],
-      "chain_text": "claude-fable-5-1:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, gpt-6-astra:medium, glm-5.3:medium",
+      "chain_text": "claude-fable-5-1:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, gpt-6-astra:medium",
       "entitlement_shaped": false,
       "origin": "override"
     },
@@ -264,14 +239,9 @@
           "model": "claude-haiku-4-5",
           "reasoning_effort": "low",
           "served": true
-        },
-        {
-          "model": "deepseek-flash",
-          "reasoning_effort": "low",
-          "served": false
         }
       ],
-      "chain_text": "gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, claude-haiku-4-5:low, deepseek-flash:low",
+      "chain_text": "gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, claude-haiku-4-5:low",
       "entitlement_shaped": false,
       "origin": "override"
     },

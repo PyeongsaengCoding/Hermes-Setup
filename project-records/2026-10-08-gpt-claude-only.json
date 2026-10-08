@@ -1,0 +1,14 @@
+{
+  "verification_kind": "configuration readback and repository tests",
+  "active_preset": "gpt-generous",
+  "current_profile": "default",
+  "allowed_model_prefixes": ["gpt-", "claude-"],
+  "all_12_live_categories_match_preset": true,
+  "both_presets_and_legacy_snapshot_use_only_allowed_models": true,
+  "retained_candidate_order_and_reasoning_unchanged": true,
+  "main_and_shared_child_fallback_unchanged": true,
+  "provider_connections_changed": false,
+  "repository_checks": {"check": "pass", "unittest_count": 49, "unittest": "pass", "diff_check": "pass"},
+  "real_provider_calls_this_change": 0,
+  "real_quota_failover_exercised": false
+}

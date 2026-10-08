@@ -51,7 +51,7 @@ omh doctor
 omh model-chains show
 ```
 
-라우팅은 **Claude 넉넉형**(`routing-presets/claude-generous.json`) 또는 **GPT(코덱스) 넉넉형**(`routing-presets/gpt-generous.json`)을 선택한다. 지정하지 않았으면 현재 설정을 유지하고 사용자에게 선택을 확인한다. Claude형은 네 분류에서 Fable → Opus 우선, Astra 후순위이며 GPT형은 네 분류의 Astra 순위를 변경 전으로 복원한다. 글·문서는 Claude형 Opus → Sol, GPT형 Sol → Opus이며 둘 다 medium이다. 나머지 일곱 분류와 모든 추론 수준은 같다. 두 버전 모두 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus다. 분류별 후보 변경을 공통 fallback 변경으로 확대하지 않는다. Kimi·Qwen·Gemini는 모든 분류에서 제거한다. 남은 GLM·DeepSeek 후보는 보존하되 사용 가능으로 간주하지 않는다. 로그인·계정·제공자 연결은 삭제하지 않는다. OMH 후보와 실제 자식 fallback을 대조하고 순서·추론 호환 패치도 검사한다. 전체 라우팅·버전별 AI 요청문·CLI 전환 명령은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
+라우팅은 **Claude 넉넉형**(`routing-presets/claude-generous.json`) 또는 **GPT(코덱스) 넉넉형**(`routing-presets/gpt-generous.json`)을 선택한다. 지정하지 않았으면 현재 설정을 유지하고 사용자에게 선택을 확인한다. Claude형은 네 분류에서 Fable → Opus 우선, Astra 후순위이며 GPT형은 네 분류의 Astra 순위를 변경 전으로 복원한다. 글·문서는 Claude형 Opus → Sol, GPT형 Sol → Opus이며 둘 다 medium이다. 나머지 일곱 분류와 모든 추론 수준은 같다. 두 버전 모두 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus다. 분류별 후보 변경을 공통 fallback 변경으로 확대하지 않는다. GPT·Claude 계열 외 후보는 모든 분류에서 제거한다. Kimi·Qwen·Gemini·GLM·DeepSeek를 다시 추가하지 않는다. 로그인·계정·제공자 연결은 삭제하지 않는다. OMH 후보와 실제 자식 fallback을 대조하고 순서·추론 호환 패치도 검사한다. 전체 라우팅·버전별 AI 요청문·CLI 전환 명령은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
 
 ## 4. 사용량 플러그인
 

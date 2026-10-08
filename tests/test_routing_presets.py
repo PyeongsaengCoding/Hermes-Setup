@@ -45,7 +45,7 @@ class RoutingPresetTests(unittest.TestCase):
     def test_removed_families_are_absent_and_writing_uses_sol_opus(self):
         for name, chains in self.chains.items():
             for chain in chains.values():
-                self.assertTrue(all(not item['model'].startswith(('kimi-', 'qwen', 'gemini-'))
+                self.assertTrue(all(item['model'].startswith(('gpt-', 'claude-'))
                                     for item in chain))
             expected = ['claude-opus-5-5', 'gpt-6.1-sol']
             if name == 'gpt-generous':
