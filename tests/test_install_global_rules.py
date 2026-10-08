@@ -33,6 +33,7 @@ class GlobalRulesTests(unittest.TestCase):
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'unchanged')
         self.assertEqual(self.target.read_bytes(), content)
         self.assertEqual(content.decode().count(installer.START), 1)
+        self.assertEqual(content.decode().count(installer.BROWSER_START), 1)
 
     def test_preserves_existing_text(self):
         existing = '# My tone\nPersonal rules.\n'
@@ -43,7 +44,26 @@ class GlobalRulesTests(unittest.TestCase):
     def test_existing_unmarked_policy_not_duplicated(self):
         existing = '# My tone\n\n' + installer.policy() + '\n\n## Other rules\nKeep me.\n'
         self.seed(existing)
+        self.assertEqual(installer.install(self.home, apply=True)['status'], 'added')
+        updated = self.target.read_text()
+        self.assertTrue(updated.startswith(existing))
+        self.assertEqual(updated.count(installer.policy()), 1)
+        self.assertEqual(updated.count(installer.BROWSER_START), 1)
+
+    def test_adds_browser_rule_to_existing_managed_report(self):
+        report = installer.START + '\n' + installer.policy() + '\n' + installer.END + '\n'
+        self.seed(report)
+        self.assertEqual(installer.install(self.home, apply=True)['status'], 'added')
+        updated = self.target.read_text()
+        self.assertTrue(updated.startswith(report))
+        self.assertEqual(updated.count(installer.BROWSER_START), 1)
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'unchanged')
+
+    def test_changed_browser_rule_is_conflict(self):
+        existing = installer.BROWSER_START + '\nPersonal edit.\n' + installer.BROWSER_END + '\n'
+        self.seed(existing)
+        with self.assertRaises(ValueError):
+            installer.install(self.home, apply=True)
         self.assertEqual(self.target.read_text(), existing)
 
     def test_preserves_existing_crlf_bytes(self):
