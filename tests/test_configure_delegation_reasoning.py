@@ -54,19 +54,29 @@ class DelegationReasoningTests(unittest.TestCase):
     def test_snapshot_preserves_category_efforts_and_primary_models(self):
         snapshot = json.loads((Path(__file__).resolve().parents[1] / 'routing-snapshot.json').read_text())
         categories = {item['category']: item['chain'] for item in snapshot['categories']}
-        for category, effort in [('architect', 'xhigh'), ('visual-engineering', 'high'),
-                                 ('artistry', 'high'), ('capable', 'medium')]:
+        for category, effort in [('architect', 'xhigh')]:
             chain = categories[category]
             self.assertEqual([item['model'] for item in chain[:3]],
                              ['claude-fable-5-1', 'gpt-6-astra', 'claude-opus-5-5'])
             self.assertTrue(all(item['reasoning_effort'] == effort for item in chain))
         for category, model, effort in [('ultrabrain', 'gpt-6-astra', 'xhigh'),
-                ('deep', 'gpt-6.1-sol', 'high'), ('deep-work', 'gpt-6-astra', 'high'),
+                ('deep', 'gpt-6.1-sol', 'high'),
                 ('quick', 'gpt-6-luna', 'low'), ('simple-work', 'gpt-6-luna', 'low')]:
             chain = categories[category]
             self.assertEqual([item['model'] for item in chain[:3]],
                              [model, 'claude-fable-5-1', 'claude-opus-5-5'])
             self.assertTrue(all(item['reasoning_effort'] == effort for item in chain))
+        for category, effort in [('visual-engineering', 'high'), ('artistry', 'high'),
+                                 ('capable', 'medium'), ('deep-work', 'high')]:
+            chain = categories[category]
+            self.assertEqual([item['model'] for item in chain[:2]],
+                             ['claude-fable-5-1', 'claude-opus-5-5'])
+            connected = [item['model'] for item in chain if item['served']]
+            self.assertEqual(connected[-1], 'gpt-6-astra')
+            self.assertTrue(all(item['reasoning_effort'] == effort for item in chain))
+        self.assertEqual(snapshot['delegation_fallback_providers'][-1]['model'], 'claude-opus-5-5')
+        self.assertEqual(snapshot['fallback_providers'],
+                         [{'provider': 'anthropic', 'model': 'claude-opus-5-5'}])
         self.assertEqual(categories['quick'][0]['model'], 'gpt-6-luna')
         self.assertEqual(categories['unspecified-low'][0]['model'], 'claude-opus-5-5')
         self.assertEqual(categories['writing'][0]['model'], 'kimi-k3')

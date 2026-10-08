@@ -51,7 +51,7 @@ omh doctor
 omh model-chains show
 ```
 
-작업 분류·추론은 OMH 설정을 사용한다. 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus로 준비한다. GPT 시작 자식도 Opus를 마지막에 둔다. Sol은 기존 `deep` 주 모델 배정을 유지하며 작업별 추론도 유지한다. Kimi는 구독·연결이 확인될 때만 사용한다. OMH 후보와 실제 자식 fallback을 대조하고 순서·추론 호환 패치도 검사한다. 다른 분류·기존 나머지 후보는 보존한다. 설정·실제 위임 검증과 업데이트 명령은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
+작업 분류·추론은 OMH 설정을 사용한다. 화면·창의·범용·긴 고난도 작업은 Fable → Opus를 먼저, Astra는 연결된 후보의 마지막에 둔다. 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus로 유지한다. 분류별 후보 변경을 공통 fallback 변경으로 확대하지 않는다. GPT 시작 자식도 공통 fallback의 Opus를 마지막에 둔다. Sol은 기존 `deep` 주 모델 배정을 유지하며 작업별 추론도 유지한다. Kimi는 구독·연결이 확인될 때만 사용한다. OMH 후보와 실제 자식 fallback을 대조하고 순서·추론 호환 패치도 검사한다. 다른 분류·기존 나머지 후보는 보존한다. 설정·실제 위임 검증과 AI 적용 요청은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
 
 ## 4. 사용량 플러그인
 

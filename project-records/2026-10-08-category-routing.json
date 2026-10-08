@@ -1,0 +1,58 @@
+{
+  "observed_on": "2026-10-08",
+  "verification_kind": "category configuration read-back and fresh-process common native fallback mock test",
+  "changed_categories": [
+    "visual-engineering",
+    "artistry",
+    "capable",
+    "deep-work"
+  ],
+  "other_categories_unchanged": true,
+  "category_efforts_preserved": true,
+  "connected_astra_last": true,
+  "shared_fallback_unchanged": true,
+  "main_fallback_unchanged": true,
+  "real_provider_calls": 0,
+  "native_common_reasoning_cases": [
+    {
+      "effort": "low",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-sonnet-5-5",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    },
+    {
+      "effort": "medium",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-sonnet-5-5",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    },
+    {
+      "effort": "high",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-sonnet-5-5",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    },
+    {
+      "effort": "xhigh",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-sonnet-5-5",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    }
+  ]
+}
