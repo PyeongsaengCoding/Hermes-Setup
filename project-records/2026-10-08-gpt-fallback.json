@@ -1,0 +1,68 @@
+{
+  "observed_on": "2026-10-08",
+  "verification_kind": "fresh-process native child fallback with provider clients and credential pools mocked",
+  "cases": [
+    {
+      "category": "ultrabrain",
+      "sequence": [
+        "gpt-6-astra",
+        "claude-fable-5-1",
+        "claude-opus-5-5"
+      ],
+      "reasoning_effort": "xhigh",
+      "reasoning_preserved": true
+    },
+    {
+      "category": "deep",
+      "sequence": [
+        "gpt-6.1-sol",
+        "claude-fable-5-1",
+        "claude-opus-5-5"
+      ],
+      "reasoning_effort": "high",
+      "reasoning_preserved": true
+    },
+    {
+      "category": "deep-work",
+      "sequence": [
+        "gpt-6-astra",
+        "claude-fable-5-1",
+        "claude-opus-5-5"
+      ],
+      "reasoning_effort": "high",
+      "reasoning_preserved": true
+    },
+    {
+      "category": "quick",
+      "sequence": [
+        "gpt-6-luna",
+        "claude-fable-5-1",
+        "claude-opus-5-5"
+      ],
+      "reasoning_effort": "low",
+      "reasoning_preserved": true
+    },
+    {
+      "category": "simple-work",
+      "sequence": [
+        "gpt-6-luna",
+        "claude-fable-5-1",
+        "claude-opus-5-5"
+      ],
+      "reasoning_effort": "low",
+      "reasoning_preserved": true
+    }
+  ],
+  "claude_primary_fallback_unchanged": true,
+  "shared_config_not_mutated": true,
+  "real_model_calls": 0,
+  "real_quota_modified": false,
+  "existing_desktop_restart_required": true,
+  "repository_checks": {
+    "scripts_check": "PASS",
+    "unittest_count": 40,
+    "unittest_result": "PASS",
+    "diff_check": "PASS",
+    "installed_adapter_repeat": "unchanged"
+  }
+}

@@ -55,11 +55,17 @@ class DelegationReasoningTests(unittest.TestCase):
         snapshot = json.loads((Path(__file__).resolve().parents[1] / 'routing-snapshot.json').read_text())
         categories = {item['category']: item['chain'] for item in snapshot['categories']}
         for category, effort in [('architect', 'xhigh'), ('visual-engineering', 'high'),
-                                 ('artistry', 'high'), ('capable', 'medium'), ('quick', 'low')]:
+                                 ('artistry', 'high'), ('capable', 'medium')]:
             chain = categories[category]
-            start = 1 if category == 'quick' else 0
-            self.assertEqual([item['model'] for item in chain[start:start + 3]],
+            self.assertEqual([item['model'] for item in chain[:3]],
                              ['claude-fable-5-1', 'gpt-6-astra', 'claude-opus-5-5'])
+            self.assertTrue(all(item['reasoning_effort'] == effort for item in chain))
+        for category, model, effort in [('ultrabrain', 'gpt-6-astra', 'xhigh'),
+                ('deep', 'gpt-6.1-sol', 'high'), ('deep-work', 'gpt-6-astra', 'high'),
+                ('quick', 'gpt-6-luna', 'low'), ('simple-work', 'gpt-6-luna', 'low')]:
+            chain = categories[category]
+            self.assertEqual([item['model'] for item in chain[:3]],
+                             [model, 'claude-fable-5-1', 'claude-opus-5-5'])
             self.assertTrue(all(item['reasoning_effort'] == effort for item in chain))
         self.assertEqual(categories['quick'][0]['model'], 'gpt-6-luna')
         self.assertEqual(categories['unspecified-low'][0]['model'], 'claude-opus-5-5')
