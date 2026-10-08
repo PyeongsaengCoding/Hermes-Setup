@@ -11,12 +11,13 @@
 | 앱 | Aside | 로그인 브라우저 작업·프로필 가져오기 | 필수; 공식 앱·CLI·자신의 로그인 | `/Applications/Aside.app` | CLI는 공식 설치기 경로 확인; macOS 프로필은 `~/Library/Application Support/Aside/` |
 | 앱 | Chrome·Edge·Safari | 기존 로그인 브라우저 활용 | 사용하는 브라우저만; 프로필 가져오기는 지원 여부 확인 | `/Applications/` | `~/Library/Application Support/Google/Chrome/`, `~/Library/Application Support/Microsoft Edge/`, Safari는 OS 관리 |
 | 확장·스킬팩 | OMH | 작업 분류·라우팅·검증 지침 | 필수; 공식 install·setup | `~/.omh/`; `~/.local/share/omh/` | Hermes 등록 `H/plugins/omh/`; 스킬 실제 경로는 `skills.external_dirs` 확인 |
+| OMH 스킬 | omh-ai-slop-cleaner | AI 생성 코드의 중복·불필요한 추상화 정리 | 필수; OMH 설치로 준비하고 Hermes에서 스킬 로드 확인; 문서 적용만으로 코드 정리를 실행하지 않음 | OMH 스킬 경로; `skills.external_dirs` 확인 | 코드 정리 시 대상 프로젝트의 회귀 검사 |
 | 런타임 호환 패치 | 자식 fallback 순서·추론 | Fable 시작·GPT 시작 경로의 순서와 작업별 추론 유지 | 설치본에 순서·추론 보완이 필요할 때만 미리보기·적용·새 프로세스 검증 | 실제 소스의 `agent/chat_completion_helpers.py`, `tools/delegate_tool_config.py` | `scripts/configure_delegation_reasoning.py`, `scripts/configure_gpt_fallback.py`; [적용 기준](docs/model-routing.md) |
 | Hermes 플러그인 | provider-usage | GPT·Claude 사용량·잔여 한도·리셋 시간 | 필수; 설치·활성화·[GPT·Claude만 표시](docs/provider-usage.md)·실제 조회 | `H/plugins/provider-usage/` | Desktop UI `H/desktop-plugins/provider-usage/`; 표시 어댑터 `scripts/configure_provider_usage.py`; 인증은 사용자의 로컬 저장소 |
 | Hermes 플러그인 | omh-auto-routing | 개인 자동 라우팅 강제 실험 | 기존 설치본은 비활성; 기본 배포하지 않음 | `H/plugins/omh-auto-routing/` (기존 설치만) | 공식 OMH 기능이 아님 |
 | Hermes UI 확장 | OMH Desktop·TUI | 상태·작업 표시 | OMH setup에서 선택한 UI 연결 | `H/desktop-plugins/omh/`; `H/tui-widgets/omh-status.mjs` | 설치 여부·표시는 별도 확인 |
 | 프로젝트 지침 | AGENTS.md | 저장소 작업 규칙 | 이 저장소에 포함; 스킬 아님 | `Hermes-Setup/AGENTS.md` | 다른 프로젝트는 각 프로젝트 루트 |
-| 전역 규칙 | 보고서·Humanizer·Aside 브라우저 사용 | 보고서 문체 검토와 모든 브라우저 작업의 Aside 사용; 프로필은 프로젝트 규칙 | `scripts/install_global_rules.py`로 중복 없이 추가; 기존 규칙 충돌 시 보존·확인 | `H/SOUL.md` | 원본 `templates/report-writing.md`, `templates/aside-browser.md`; 제품 UX writing·코드 정리 규칙은 포함하지 않음 |
+| 전역 규칙 | 사용자 의도·정정 반영, Aside 브라우저 직접 조작 | 목적·방법 구별과 정정 시 계획·위임 재검토; Aside `repl` 직접 조작; 자체 AI 에이전트·`exec` 금지 | `scripts/install_global_rules.py`로 중복 없이 추가; 기존 규칙 충돌 시 보존·확인 | `H/SOUL.md` | 원본 `templates/user-intent.md`, `templates/aside-browser.md`; 브라우저 프로필은 프로젝트 규칙 |
 | 스킬 | apple-notes | Apple 메모 읽기·검색·작성 | 공식 원본; memo; macOS Automation 승인 | `H/skills/apple/apple-notes/` | `$(brew --prefix)/bin/memo` |
 | 스킬 | apple-reminders | Apple 미리 알림 관리 | 공식 원본; remindctl; 미리 알림 승인 | `H/skills/apple/apple-reminders/` | `$(brew --prefix)/bin/remindctl` |
 | 스킬 | findmy | 나의 찾기 기기·AirTag 확인 | 공식 원본; 나의 찾기·iCloud; 화면 권한 | `H/skills/apple/findmy/` | macOS 기본 앱 |
@@ -31,7 +32,7 @@
 | 스킬 | baoyu-infographic | 정보를 인포그래픽으로 구성 | 공식 원본; 이미지 생성 도구는 사용할 때 연결 | `H/skills/creative/baoyu-infographic/` | Hermes 제공자 설정 |
 | 스킬 | claude-design | 일회성 HTML 화면·발표·프로토타입 | 공식 원본; 별도 설치 없음; 작업에 맞는 기본 도구 | `H/skills/creative/claude-design/` | — |
 | 스킬 | design-md | DESIGN.md 디자인 토큰 작성·검사 | 공식 원본; Node; `@google/design.md`를 npx로 실행 | `H/skills/creative/design-md/` | `~/.npm/_npx/` |
-| 스킬 | humanizer | 과장·군더더기·AI 문체 제거 | 공식 원본; 별도 설치 없음; 작업에 맞는 기본 도구 | `H/skills/creative/humanizer/` | — |
+| 스킬 | humanizer | 과장·군더더기·AI 문체 제거 | 필수; 스킬 설치기로 공식 원본 설치·Hermes에서 로드 확인; 추가 CLI·라이브러리 불필요 | `H/skills/creative/humanizer/` | — |
 | 스킬 | manim-video | Manim 수학·알고리즘 영상 | 공식 원본; Manim·LaTeX·ffmpeg | `H/skills/creative/manim-video/` | 프로젝트 `.venv/`; `/Library/TeX/`; Homebrew bin |
 | 스킬 | p5js | p5.js 생성형 그래픽·인터랙션 | 공식 원본; 브라우저·p5.js; 영상 출력은 Node·ffmpeg | `H/skills/creative/p5js/` | 프로젝트 HTML·`node_modules/` |
 | 스킬 | popular-web-designs | 실제 디자인 시스템 참고 화면 | 공식 원본; 별도 설치 없음; 작업에 맞는 기본 도구 | `H/skills/creative/popular-web-designs/` | — |

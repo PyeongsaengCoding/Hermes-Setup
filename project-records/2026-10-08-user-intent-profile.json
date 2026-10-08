@@ -1,0 +1,8 @@
+{
+  "active_profile": "default",
+  "intent_policy_matches_template": true,
+  "intent_block_occurrences": 1,
+  "existing_browser_policy_preserved": true,
+  "new_session_model_loading": "not_observed",
+  "behavioral_regression_prevention": "not_verified"
+}

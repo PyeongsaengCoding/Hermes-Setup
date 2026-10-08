@@ -23,6 +23,20 @@ class GlobalRulesTests(unittest.TestCase):
         self.home.mkdir(parents=True, exist_ok=True)
         self.target.write_text(content, encoding='utf-8')
 
+    def test_browser_policy_requires_direct_repl_without_aside_agent(self):
+        body = installer.browser_policy()
+        for requirement in (
+            'Hermes model',
+            '`repl`',
+            'Do not use Aside\'s own AI agent',
+            '`aside exec`',
+            'natural-language prompts',
+            'Do not switch to `exec`',
+        ):
+            self.assertIn(requirement, body)
+        installer.install(self.home, apply=True)
+        self.assertIn(body, self.target.read_text())
+
     def test_preview_does_not_write(self):
         self.assertEqual(installer.install(self.home)['status'], 'add')
         self.assertFalse(self.home.exists())
@@ -32,8 +46,12 @@ class GlobalRulesTests(unittest.TestCase):
         content = self.target.read_bytes()
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'unchanged')
         self.assertEqual(self.target.read_bytes(), content)
-        self.assertEqual(content.decode().count(installer.START), 1)
+        self.assertNotIn(installer.LEGACY_REPORT_START, content.decode())
+        self.assertNotIn(installer.LEGACY_REPORT_HEADING, content.decode())
+        self.assertEqual(installer.install(self.home)['legacy_report_policy'], 'absent')
         self.assertEqual(content.decode().count(installer.BROWSER_START), 1)
+        self.assertEqual(content.decode().count(installer.INTENT_START), 1)
+        self.assertIn(installer.intent_policy(), content.decode())
 
     def test_preserves_existing_text(self):
         existing = '# My tone\nPersonal rules.\n'
@@ -41,23 +59,56 @@ class GlobalRulesTests(unittest.TestCase):
         installer.install(self.home, apply=True)
         self.assertTrue(self.target.read_text().startswith(existing))
 
-    def test_existing_unmarked_policy_not_duplicated(self):
-        existing = '# My tone\n\n' + installer.policy() + '\n\n## Other rules\nKeep me.\n'
+    def test_existing_unmarked_browser_policy_not_duplicated(self):
+        existing = '# My tone\n\n' + installer.browser_policy() + '\n\n## Other rules\nKeep me.\n'
         self.seed(existing)
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'added')
         updated = self.target.read_text()
         self.assertTrue(updated.startswith(existing))
-        self.assertEqual(updated.count(installer.policy()), 1)
-        self.assertEqual(updated.count(installer.BROWSER_START), 1)
+        self.assertEqual(updated.count(installer.browser_policy()), 1)
+        self.assertNotIn(installer.BROWSER_START, updated)
+
+    def test_existing_unmarked_intent_policy_not_duplicated(self):
+        existing = installer.browser_policy() + '\n\n' + installer.intent_policy() + '\n'
+        self.seed(existing)
+        self.assertEqual(installer.install(self.home, apply=True)['status'], 'unchanged')
+        self.assertEqual(self.target.read_text(), existing)
+
+    def test_changed_intent_rule_preserves_whole_file(self):
+        existing = installer.INTENT_START + '\nPersonal edit.\n' + installer.INTENT_END + '\n'
+        self.seed(existing)
+        with self.assertRaises(ValueError):
+            installer.install(self.home, apply=True)
+        self.assertEqual(self.target.read_text(), existing)
+
+    def test_malformed_intent_markers_are_conflict(self):
+        self.seed(installer.INTENT_START + '\nIncomplete.\n')
+        before = self.target.read_bytes()
+        with self.assertRaises(ValueError):
+            installer.install(self.home, apply=True)
+        self.assertEqual(self.target.read_bytes(), before)
+
+    def test_intent_policy_covers_correction_without_mandatory_confirmation(self):
+        body = installer.intent_policy()
+        for requirement in (
+            'initial interpretation as provisional',
+            'plan, and delegated work',
+            'revise or stop work',
+            'Do not present your proposals as user-approved requirements',
+            'Choose implementation details autonomously',
+            "user's corrected intent",
+        ):
+            self.assertIn(requirement, body)
 
     def test_adds_browser_rule_to_existing_managed_report(self):
-        report = installer.START + '\n' + installer.policy() + '\n' + installer.END + '\n'
+        report = installer.LEGACY_REPORT_START + '\nPersonal report policy.\n' + installer.LEGACY_REPORT_END + '\n'
         self.seed(report)
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'added')
         updated = self.target.read_text()
         self.assertTrue(updated.startswith(report))
         self.assertEqual(updated.count(installer.BROWSER_START), 1)
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'unchanged')
+        self.assertEqual(installer.install(self.home)['legacy_report_policy'], 'present_preserved')
 
     def test_changed_browser_rule_is_conflict(self):
         existing = installer.BROWSER_START + '\nPersonal edit.\n' + installer.BROWSER_END + '\n'
@@ -73,22 +124,29 @@ class GlobalRulesTests(unittest.TestCase):
         installer.install(self.home, apply=True)
         self.assertTrue(self.target.read_bytes().startswith(existing))
 
-    def test_different_report_policy_is_conflict(self):
+    def test_personal_unmarked_report_policy_is_preserved(self):
         existing = '## Reports and AI-slop review\n\nMy existing policy.\n'
         self.seed(existing)
-        with self.assertRaises(ValueError):
-            installer.install(self.home, apply=True)
-        self.assertEqual(self.target.read_text(), existing)
+        result = installer.install(self.home, apply=True)
+        self.assertEqual(result['status'], 'added')
+        self.assertEqual(result['legacy_report_policy'], 'present_preserved')
+        self.assertTrue(self.target.read_text().startswith(existing))
 
-    def test_changed_managed_block_is_conflict(self):
-        self.seed(installer.START + '\nPersonal edit.\n' + installer.END + '\n')
+    def test_malformed_legacy_report_is_preserved(self):
+        existing = installer.LEGACY_REPORT_START + '\nPersonal edit.\n'
+        self.seed(existing)
+        installer.install(self.home, apply=True)
+        self.assertTrue(self.target.read_text().startswith(existing))
+
+    def test_changed_managed_browser_block_is_conflict(self):
+        self.seed(installer.BROWSER_START + '\nPersonal edit.\n' + installer.BROWSER_END + '\n')
         before = self.target.read_bytes()
         with self.assertRaises(ValueError):
             installer.install(self.home, apply=True)
         self.assertEqual(self.target.read_bytes(), before)
 
     def test_malformed_markers_are_conflict(self):
-        self.seed(installer.START + '\nIncomplete.\n')
+        self.seed(installer.BROWSER_START + '\nIncomplete.\n')
         with self.assertRaises(ValueError):
             installer.install(self.home, apply=True)
 

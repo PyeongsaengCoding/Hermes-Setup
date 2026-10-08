@@ -1,25 +1,28 @@
 #!/usr/bin/env python3
-"""Add managed global rules to a chosen Hermes profile without overwriting its SOUL."""
+"""Add intent and Aside rules to a chosen Hermes profile without overwriting its SOUL."""
 import argparse
 import json
 import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-START = '<!-- hermes-setup:report-writing:begin -->'
-END = '<!-- hermes-setup:report-writing:end -->'
-HEADING = '## Reports and AI-slop review'
+LEGACY_REPORT_START = '<!-- hermes-setup:report-writing:begin -->'
+LEGACY_REPORT_END = '<!-- hermes-setup:report-writing:end -->'
+LEGACY_REPORT_HEADING = '## Reports and AI-slop review'
 BROWSER_START = '<!-- hermes-setup:aside-browser:begin -->'
 BROWSER_END = '<!-- hermes-setup:aside-browser:end -->'
 BROWSER_HEADING = '## Browser work in Aside'
-
-
-def policy():
-    return (ROOT / 'templates/report-writing.md').read_text(encoding='utf-8').strip()
+INTENT_START = '<!-- hermes-setup:user-intent:begin -->'
+INTENT_END = '<!-- hermes-setup:user-intent:end -->'
+INTENT_HEADING = '## User intent and course correction'
 
 
 def browser_policy():
     return (ROOT / 'templates/aside-browser.md').read_text(encoding='utf-8').strip()
+
+
+def intent_policy():
+    return (ROOT / 'templates/user-intent.md').read_text(encoding='utf-8').strip()
 
 
 def policy_status(existing, body, start_marker, end_marker, heading):
@@ -50,21 +53,28 @@ def install(home, apply=False):
         raise ValueError('Refusing SOUL.md symlink')
     existing = target.read_bytes().decode('utf-8') if target.exists() else ''
     policies = (
-        (policy(), START, END, HEADING),
         (browser_policy(), BROWSER_START, BROWSER_END, BROWSER_HEADING),
+        (intent_policy(), INTENT_START, INTENT_END, INTENT_HEADING),
     )
+    # Validate every policy before writing, so a conflict preserves the whole file.
     additions = []
-    for body, start_marker, end_marker, heading in policies:
-        state, block = policy_status(existing, body, start_marker, end_marker, heading)
-        if state == 'add':
+    for body, start, end, heading in policies:
+        policy_state, block = policy_status(existing, body, start, end, heading)
+        if policy_state == 'add':
             additions.append(block)
     status = 'add' if additions else 'unchanged'
-    if apply and additions:
+    legacy_report_present = any(token in existing for token in (
+        LEGACY_REPORT_START, LEGACY_REPORT_END, LEGACY_REPORT_HEADING
+    ))
+    if apply and status == 'add':
         target.parent.mkdir(parents=True, exist_ok=True)
         separator = '' if not existing else ('\n' if existing.endswith('\n') else '\n\n')
         target.write_text(existing + separator + '\n\n'.join(additions) + '\n', encoding='utf-8')
         status = 'added'
-    return {'status': status, 'path': str(target), 'apply': apply}
+    return {
+        'status': status, 'path': str(target), 'apply': apply,
+        'legacy_report_policy': 'present_preserved' if legacy_report_present else 'absent',
+    }
 
 
 def main():
