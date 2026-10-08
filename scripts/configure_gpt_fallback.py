@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Order pinned GPT child fallbacks as Fable then Opus; preview by default."""
+"""Keep Fable first and Opus last for pinned GPT children; preview by default."""
 import argparse
 import ast
 import hashlib
@@ -19,10 +19,14 @@ REPLACEMENT = ANCHOR.replace('    return ', '    chain = ', 1) + '''
             and cfg.get("model") in {"gpt-6-astra", "gpt-6.1-sol", "gpt-6-luna"}
             and chain):
         ranks = {("anthropic", "claude-fable-5-1"): 0,
-                 ("anthropic", "claude-opus-5-5"): 1}
+                 ("anthropic", "claude-opus-5-5"): 3}
         chain = sorted(chain, key=lambda entry: ranks.get(
             (entry.get("provider"), entry.get("model")), 2))
     return chain'''
+
+LEGACY_REPLACEMENT = REPLACEMENT.replace(
+    '("anthropic", "claude-opus-5-5"): 3}',
+    '("anthropic", "claude-opus-5-5"): 1}')
 
 
 def adapt(source):
@@ -35,6 +39,11 @@ def adapt(source):
     lines = source.splitlines(keepends=True)
     section = ''.join(lines[node.lineno - 1:node.end_lineno])
     if 'hermes-setup:gpt-child-claude-fallback' in source:
+        if section.count(LEGACY_REPLACEMENT) == 1:
+            result = ''.join(lines[:node.lineno - 1]) + section.replace(
+                LEGACY_REPLACEMENT, REPLACEMENT, 1) + ''.join(lines[node.end_lineno:])
+            ast.parse(result)
+            return result
         if section.count(REPLACEMENT) != 1:
             raise ValueError('Changed GPT fallback adapter; source preserved')
         return source

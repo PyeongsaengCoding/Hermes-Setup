@@ -3,7 +3,7 @@ import tempfile
 from types import SimpleNamespace
 import unittest
 
-from scripts.configure_gpt_fallback import adapt, install
+from scripts.configure_gpt_fallback import LEGACY_REPLACEMENT, adapt, install
 
 SOURCE = '''def _resolve_child_fallback_chain(parent_agent, routing_cfg, pinned):
     return scoped_fallback_chain(
@@ -27,9 +27,17 @@ class GPTFallbackTests(unittest.TestCase):
         before = [dict(entry) for entry in CHAIN]
         for model in ('gpt-6-astra', 'gpt-6.1-sol', 'gpt-6-luna'):
             result = self.resolve('openai-codex', model)
-            self.assertEqual([entry['model'] for entry in result][:2],
-                             ['claude-fable-5-1', 'claude-opus-5-5'])
+            self.assertEqual([entry['model'] for entry in result],
+                             ['claude-fable-5-1', 'gpt-6-astra',
+                              'claude-sonnet-5-5', 'claude-opus-5-5'])
             self.assertEqual(CHAIN, before)
+
+    def test_exact_legacy_adapter_upgrades_idempotently(self):
+        from scripts.configure_gpt_fallback import ANCHOR
+        legacy = SOURCE.replace(ANCHOR, LEGACY_REPLACEMENT)
+        upgraded = adapt(legacy)
+        self.assertEqual(upgraded, adapt(SOURCE))
+        self.assertEqual(adapt(upgraded), upgraded)
 
     def test_claude_and_unpinned_routes_unchanged(self):
         self.assertEqual(self.resolve('anthropic', 'claude-fable-5-1'), CHAIN)
