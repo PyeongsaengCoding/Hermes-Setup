@@ -1,6 +1,23 @@
 # 모델 라우팅
 
-Hermes 내부 위임은 OMH 작업 분류를 따른다. Claude Code·Codex 외부 실행기의 설정과 섞지 않는다. 아래 표는 2026-10-08의 OMH 분류별 후보다. Hermes의 실제 공통 fallback은 별도이며 마지막 모델을 Opus로 변경했다. 작업별 추론은 유지한다. 설치 때 `omh model-chains show --json`과 계정에서 제공하는 모델을 확인한다.
+Hermes 내부 위임은 OMH 작업 분류를 따른다. Claude Code·Codex 외부 실행기의 설정과 섞지 않는다. 라우팅은 **Claude 넉넉형**과 **GPT(코덱스) 넉넉형**으로 나눈다. 둘 다 사용자 지정 프리셋이며 OMH 원본 그대로는 아니다. Hermes의 공통 fallback은 두 버전이 같고 마지막은 Opus다. 설치 때 `omh model-chains show --json`과 계정에서 제공하는 모델을 확인한다.
+
+## 버전 선택
+
+- Claude 넉넉형: [claude-generous.json](../routing-presets/claude-generous.json). 아래 전체 표와 같다.
+- GPT(코덱스) 넉넉형: [gpt-generous.json](../routing-presets/gpt-generous.json). 아래 네 분류의 Astra 순위를 변경 전으로 복원한다.
+- 기존 [routing-snapshot.json](../routing-snapshot.json)은 Claude형 호환 스냅샷으로 유지한다. 새 적용 요청은 선택한 프리셋 파일을 명시한다. 버전을 지정하지 않았으면 현재 설정을 유지하고 선택을 확인한다.
+
+| 분류 | Claude 넉넉형 | GPT(코덱스) 넉넉형 | 추론 |
+|---|---|---|---|
+| 화면·프론트엔드 | Fable → Opus → Astra | Fable → Astra → Opus | high |
+| 창의적 작업 | Fable → Opus → Astra | Fable → Astra → Opus | high |
+| 범용 작업 | Fable → Opus → Sonnet → Astra | Fable → Astra → Opus → Sonnet | medium |
+| 길고 까다로운 작업 | Fable → Opus → Astra | Astra → Fable → Opus | high |
+
+비교 표는 GPT·Claude 후보만 표시한다. 전체 후보는 각 프리셋 JSON에 있고 미연결 후보도 보존한다. 나머지 여덟 분류·추론·공통 fallback·호환 패치는 두 버전이 같다. GPT형도 화면·창의·범용 작업은 Fable로 시작하며, 모든 작업을 GPT 우선으로 바꾸는 버전은 아니다.
+
+## Claude 넉넉형 전체 라우팅
 
 | 하는 일 | OMH 분류 | 모델 라우팅 순서·추론 |
 |---|---|---|
@@ -19,11 +36,11 @@ Hermes 내부 위임은 OMH 작업 분류를 따른다. Claude Code·Codex 외�
 
 ## 기본 옵션
 
-작업 분류·추론은 OMH 설정을 따른다. 위 표는 사용자 지정 체인이며 OMH 전체의 기본값으로 취급하지 않는다. 화면·창의·범용·긴 고난도 작업 네 분류만 Fable → Opus 우선으로 바꾸고 Astra는 연결된 후보의 마지막에 둔다. 범용 작업의 Sonnet과 미연결 후보는 보존한다. OMH는 연결된 후보를 앞으로 모으므로 미연결 후보는 Astra 뒤에 표시될 수 있다. 추론 수준·다른 분류·현재 대화 모델·외부 Codex·Claude Code 설정은 바꾸지 않는다.
+작업 분류·추론은 선택한 프리셋을 따른다. Claude형은 네 분류에서 Fable → Opus 우선, Astra 후순위다. GPT형은 위 비교 표대로 Astra 위치만 복원한다. 범용 작업의 Sonnet과 미연결 후보는 보존한다. OMH는 연결된 후보를 앞으로 모으므로 계정 연결 상태에 따라 표시 순서가 달라질 수 있다. 추론 수준·다른 분류·현재 대화 모델·외부 Codex·Claude Code 설정은 바꾸지 않는다.
 
 설치된 OMH 원본에서 `ultrabrain`은 Astra xhigh 하나, `deep-work`는 Astra high 하나였다. GPT → Fable → Opus는 이번에 추가했다. Sol은 원래 `deep`의 주 모델이었다(Sol high → DeepSeek high). 이 배정은 OMH의 추천 설정이며 Sol만 수행할 수 있는 작업이라는 뜻은 아니다.
 
-**현재 대화의 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus다.** 네 분류의 후보 변경과 별개로 공통 fallback의 마지막 Opus는 유지한다. GPT 시작 자식도 Fable을 먼저, Opus를 마지막에 둔다. 주 모델과 같은 후보·사용 불가능한 후보는 건너뛴다. Opus가 주 모델인 작업에서 이미 소진된 Opus를 마지막에 다시 호출한다는 뜻은 아니다. `deep`의 Sol high 주 모델 배정은 유지했다. 글·문서의 Luna → Sonnet → Opus는 제안만 했으며 적용하지 않았다.
+**두 버전의 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus다.** 네 분류의 후보 변경과 별개로 공통 fallback의 마지막 Opus는 유지한다. GPT 시작 자식도 Fable을 먼저, Opus를 마지막에 둔다. 주 모델과 같은 후보·사용 불가능한 후보는 건너뛴다. Opus가 주 모델인 작업에서 이미 소진된 Opus를 마지막에 다시 호출한다는 뜻은 아니다. `deep`의 Sol high 주 모델 배정은 유지했다. 글·문서의 Luna → Sonnet → Opus는 제안만 했으며 적용하지 않았다.
 
 기본 모델이 사용 가능한데 임의로 교체하지 않는다. 모델별 소진과 GPT 계정 전체 소진을 구분하며, 같은 계정 전체가 소진됐으면 Astra·Sol·Luna끼리 바꿔서 회복된다고 간주하지 않는다. 인증 실패·통신 오류를 한도 소진으로 보고하지 않으며 다른 오류로 전환한 경우 원인을 구분한다. 이 표를 미래의 최신 모델 목록으로 취급하지 않는다.
 
@@ -38,7 +55,7 @@ omh model-chains show --json
 설치 AI는 아래를 한 흐름으로 수행한다.
 
 1. 선택한 프로필의 GPT·Claude 로그인과 모델별 사용 제한 상태를 확인한다. 인증값은 출력하지 않으며 사용 제한 기록을 초기화하지 않는다.
-2. 표의 각 분류를 `omh model-chains set`으로 적용한다. 이미 같은 설정이면 변경하지 않는다. 모델마다 해당 분류의 추론 수준을 명시하고 미연결 후보도 보존한다. 연결 상태에 따라 표시 순서가 달라질 수 있으므로 적용 후 다시 읽는다.
+2. 선택한 프리셋 JSON의 각 분류를 `omh model-chains set`으로 적용한다. 이미 같은 설정이면 변경하지 않는다. 모델마다 해당 분류의 추론 수준을 명시하고 미연결 후보도 보존한다. 연결 상태에 따라 표시 순서가 달라질 수 있으므로 적용 후 다시 읽는다.
 3. 아래 명령으로 전역 fallback은 Opus, 공통 자식 fallback은 Fable → Astra → Sonnet → Opus로 맞춘다. GPT 호환 패치도 Opus를 마지막에 둔다. 공통 목록·자식의 실제 목록·분류별 OMH 후보를 구분한다.
 4. 아래 호환 패치를 확인·적용한 뒤 통제된 한도 소진 시험에서 양방향 전환과 기존 추론 유지를 검사한다. 실제 계정 한도를 소진시키거나 제한을 해제하지 않는다.
 5. 최소 실제 위임을 실행해 응답과 `session_model_usage`의 모델·`billing_provider`·API 호출 수를 대조한다. 준비된 배정, fallback 선언, 실제 호출 성공을 따로 기록한다.
@@ -65,6 +82,8 @@ python3 scripts/configure_gpt_fallback.py --source-root <확인한-Hermes-소스
 
 ## 확인
 
+두 프리셋의 차이는 네 분류의 순서뿐이며 기존 추론·미연결 후보·공통 fallback은 같다. 현재 default 프로필의 GPT형 적용과 열두 분류 대조, 공통 fallback 통제 시험은 [프리셋 검증](../project-records/2026-10-08-routing-presets.json)에 기록했다. 이번 전환에서는 실제 제공자 호출이나 한도 소진을 실행하지 않았다.
+
 네 분류의 Fable → Opus 우선, Astra 후순위와 공통 fallback 보존은 [분류별 검증](../project-records/2026-10-08-category-routing.json)을 따른다. 이 기록은 설정 대조이며 실제 모델 전환을 실행한 기록은 아니다. 분류별 OMH 후보 순서가 공통 native fallback 순서까지 바꾼다고 간주하지 않는다.
 
 마지막 Opus 정책은 [최종 fallback 검증](../project-records/2026-10-08-opus-final.json)을 따른다. 아래 이전 시험은 당시 경로의 기록이며 새 경로의 실제 호출 증거가 아니다.
@@ -82,10 +101,42 @@ python3 scripts/configure_gpt_fallback.py --source-root <확인한-Hermes-소스
 
 ## AI에게 적용 요청
 
-아래는 쉘 명령이 아니라 AI 채팅에 붙여 넣는 요청이다.
+아래는 쉘 명령이 아니라 AI 채팅에 붙여 넣는 요청이다. 둘 중 하나만 사용한다.
+
+### Claude 넉넉형 요청
 
 ```text
-https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-snapshot.json을 읽고, 내 현재 Hermes 프로필의 OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 GitHub 기준으로 맞춰줘. 분류별 후보와 공통 fallback은 구분하고, 공통 fallback의 마지막 Opus를 유지해줘. 로그인·구독·미연결 후보와 다른 프로필은 임의로 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
+https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/claude-generous.json을 읽고, 내 현재 Hermes 프로필을 Claude 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. 로그인·구독·미연결 후보와 다른 프로필은 임의로 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
+```
+
+### GPT(코덱스) 넉넉형 요청
+
+```text
+https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/gpt-generous.json을 읽고, 내 현재 Hermes 프로필을 GPT(코덱스) 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. 로그인·구독·미연결 후보와 다른 프로필은 임의로 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
+```
+
+## 선택적 CLI 전환
+
+이미 나머지 여덟 분류와 공통 fallback이 맞는 환경에서 네 분류만 전환하는 명령이다. 새 설치는 위 AI 요청으로 전체 프리셋과 호환 패치까지 맞춘다. 현재 프로필을 확인한 뒤 둘 중 한 블록만 실행한다. 미연결 후보를 연결하거나 로그인하지 않는다.
+
+### claude-generous CLI
+
+```sh
+omh model-chains set visual-engineering 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high, kimi-k3:high'
+omh model-chains set artistry 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high, gemini-3.1-pro:high, kimi-k3:high'
+omh model-chains set capable 'claude-fable-5-1:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, gpt-6-astra:medium, kimi-k3:medium, glm-5.3:medium'
+omh model-chains set deep-work 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high'
+omh model-chains show --json
+```
+
+### gpt-generous CLI
+
+```sh
+omh model-chains set visual-engineering 'claude-fable-5-1:high, gpt-6-astra:high, claude-opus-5-5:high, kimi-k3:high'
+omh model-chains set artistry 'claude-fable-5-1:high, gpt-6-astra:high, claude-opus-5-5:high, gemini-3.1-pro:high, kimi-k3:high'
+omh model-chains set capable 'claude-fable-5-1:medium, gpt-6-astra:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, kimi-k3:medium, glm-5.3:medium'
+omh model-chains set deep-work 'gpt-6-astra:high, claude-fable-5-1:high, claude-opus-5-5:high'
+omh model-chains show --json
 ```
 
 ## 업데이트
