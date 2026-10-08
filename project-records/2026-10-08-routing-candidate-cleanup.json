@@ -1,0 +1,28 @@
+{
+  "verification_kind": "routing readback, repository tests and minimal real writing-route child",
+  "current_profile": "default",
+  "active_preset": "gpt-generous",
+  "removed_model_families": ["kimi", "qwen", "gemini"],
+  "all_12_live_categories_match_selected_preset": true,
+  "non_writing_retained_candidates_and_efforts_unchanged": true,
+  "writing": {
+    "claude_generous": ["claude-opus-5-5", "gpt-6.1-sol"],
+    "gpt_generous": ["gpt-6.1-sol", "claude-opus-5-5"],
+    "reasoning_effort": "medium"
+  },
+  "main_and_shared_child_fallback_unchanged": true,
+  "account_and_provider_connections_changed": false,
+  "other_profiles_changed": false,
+  "repository_checks": {"check": "pass", "unittest_count": 49, "unittest": "pass", "diff_check": "pass"},
+  "real_child": {
+    "session_id": "20261008_173904_5ffe47",
+    "requested_model": "gpt-6.1-sol",
+    "configured_effort": "medium",
+    "observed_model": "gpt-6.1-sol",
+    "observed_billing_provider": "openai-codex",
+    "observed_effort": "not recorded in session_model_usage",
+    "api_calls": 1,
+    "response": "ROUTING_OK",
+    "quota_failover_exercised": false
+  }
+}

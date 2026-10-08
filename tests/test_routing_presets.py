@@ -6,7 +6,7 @@ import shlex
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-CHANGED = {'visual-engineering', 'artistry', 'capable', 'deep-work'}
+CHANGED = {'visual-engineering', 'artistry', 'capable', 'deep-work', 'writing'}
 
 
 class RoutingPresetTests(unittest.TestCase):
@@ -16,7 +16,7 @@ class RoutingPresetTests(unittest.TestCase):
         self.chains = {name: {item['category']: item['chain'] for item in preset['categories']}
                        for name, preset in self.presets.items()}
 
-    def test_only_four_category_orders_differ(self):
+    def test_only_five_category_orders_differ(self):
         a, b = self.chains['claude-generous'], self.chains['gpt-generous']
         self.assertEqual(len(a), 12)
         self.assertEqual(set(a), set(b))
@@ -42,6 +42,18 @@ class RoutingPresetTests(unittest.TestCase):
         self.assertEqual(a['fallback_providers'],
                          [{'provider': 'anthropic', 'model': 'claude-opus-5-5'}])
 
+    def test_removed_families_are_absent_and_writing_uses_sol_opus(self):
+        for name, chains in self.chains.items():
+            for chain in chains.values():
+                self.assertTrue(all(not item['model'].startswith(('kimi-', 'qwen', 'gemini-'))
+                                    for item in chain))
+            expected = ['claude-opus-5-5', 'gpt-6.1-sol']
+            if name == 'gpt-generous':
+                expected.reverse()
+            self.assertEqual([item['model'] for item in chains['writing']], expected)
+            self.assertTrue(all(item['reasoning_effort'] == 'medium'
+                                for item in chains['writing']))
+
     def test_legacy_snapshot_stays_claude_compatible(self):
         legacy = json.loads((ROOT / 'routing-snapshot.json').read_text())
         for key in ['categories', 'fallback_providers', 'delegation_fallback_providers']:
@@ -52,7 +64,7 @@ class RoutingPresetTests(unittest.TestCase):
         for name, chains in self.chains.items():
             section = doc.split('### ' + name + ' CLI', 1)[1].split('\n### ', 1)[0]
             lines = re.findall(r'^omh model-chains set .+$', section, re.M)
-            self.assertEqual(len(lines), 4)
+            self.assertEqual(len(lines), 12)
             for line in lines:
                 command = shlex.split(line)
                 key = command[3]

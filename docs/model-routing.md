@@ -5,7 +5,7 @@ Hermes 내부 위임은 OMH 작업 분류를 따른다. Claude Code·Codex 외�
 ## 버전 선택
 
 - Claude 넉넉형: [claude-generous.json](../routing-presets/claude-generous.json). 아래 전체 표와 같다.
-- GPT(코덱스) 넉넉형: [gpt-generous.json](../routing-presets/gpt-generous.json). 아래 네 분류의 Astra 순위를 변경 전으로 복원한다.
+- GPT(코덱스) 넉넉형: [gpt-generous.json](../routing-presets/gpt-generous.json). 네 분류의 Astra 순위를 변경 전으로 복원하고 글·문서는 Sol을 우선한다.
 - 기존 [routing-snapshot.json](../routing-snapshot.json)은 Claude형 호환 스냅샷으로 유지한다. 새 적용 요청은 선택한 프리셋 파일을 명시한다. 버전을 지정하지 않았으면 현재 설정을 유지하고 선택을 확인한다.
 
 | 분류 | Claude 넉넉형 | GPT(코덱스) 넉넉형 | 추론 |
@@ -14,8 +14,9 @@ Hermes 내부 위임은 OMH 작업 분류를 따른다. Claude Code·Codex 외�
 | 창의적 작업 | Fable → Opus → Astra | Fable → Astra → Opus | high |
 | 범용 작업 | Fable → Opus → Sonnet → Astra | Fable → Astra → Opus → Sonnet | medium |
 | 길고 까다로운 작업 | Fable → Opus → Astra | Astra → Fable → Opus | high |
+| 글·문서 | Opus → Sol | Sol → Opus | medium |
 
-비교 표는 GPT·Claude 후보만 표시한다. 전체 후보는 각 프리셋 JSON에 있고 미연결 후보도 보존한다. 나머지 여덟 분류·추론·공통 fallback·호환 패치는 두 버전이 같다. GPT형도 화면·창의·범용 작업은 Fable로 시작하며, 모든 작업을 GPT 우선으로 바꾸는 버전은 아니다.
+비교 표는 GPT·Claude 후보만 표시한다. 전체 후보는 각 프리셋 JSON에 있다. Kimi·Qwen·Gemini는 모든 분류에서 제거했다. 나머지 일곱 분류·추론·공통 fallback·호환 패치는 두 버전이 같다. GPT형도 화면·창의·범용 작업은 Fable로 시작하며, 모든 작업을 GPT 우선으로 바꾸는 버전은 아니다.
 
 ## Claude 넉넉형 전체 라우팅
 
@@ -23,28 +24,28 @@ Hermes 내부 위임은 OMH 작업 분류를 따른다. Claude Code·Codex 외�
 |---|---|---|
 | 최고 난도 추론 | `ultrabrain` | `gpt-6-astra` xhigh → `claude-fable-5-1` xhigh → `claude-opus-5-5` xhigh |
 | 심층 분석 | `deep` | `gpt-6.1-sol` high → `claude-fable-5-1` high → `claude-opus-5-5` high → `deepseek-flash` high (추가 제공자 필요) |
-| 시스템 설계 | `architect` | `claude-fable-5-1` xhigh → `gpt-6-astra` xhigh → `claude-opus-5-5` xhigh → `kimi-k3` xhigh (추가 제공자 필요) |
-| 고난도 일반 작업 | `unspecified-high` | `claude-opus-5-5` medium → `kimi-k3` medium (추가 제공자 필요) |
+| 시스템 설계 | `architect` | `claude-fable-5-1` xhigh → `gpt-6-astra` xhigh → `claude-opus-5-5` xhigh |
+| 고난도 일반 작업 | `unspecified-high` | `claude-opus-5-5` medium |
 | 저난도 일반 작업 | `unspecified-low` | `claude-opus-5-5` low → `glm-5.3` low (추가 제공자 필요) → `deepseek-flash` low (추가 제공자 필요) |
-| 짧은 확인·수정 | `quick` | `gpt-6-luna` low → `claude-fable-5-1` low → `claude-opus-5-5` low → `gpt-6-astra` low → `glm-5.3-flash` low (추가 제공자 필요) → `kimi-k3` low (추가 제공자 필요) |
-| 글·문서 | `writing` | `kimi-k3` medium (추가 제공자 필요) → `qwen3-coder` medium (추가 제공자 필요) → `gemini-3.1-pro` medium (추가 제공자 필요) |
-| 화면·프론트엔드 | `visual-engineering` | `claude-fable-5-1` high → `claude-opus-5-5` high → `gpt-6-astra` high → `kimi-k3` high (추가 제공자 필요) |
-| 창의적 작업 | `artistry` | `claude-fable-5-1` high → `claude-opus-5-5` high → `gpt-6-astra` high → `gemini-3.1-pro` high (추가 제공자 필요) → `kimi-k3` high (추가 제공자 필요) |
-| 범용 작업 | `capable` | `claude-fable-5-1` medium → `claude-opus-5-5` medium → `claude-sonnet-5-5` medium → `gpt-6-astra` medium → `kimi-k3` medium (추가 제공자 필요) → `glm-5.3` medium (추가 제공자 필요) |
+| 짧은 확인·수정 | `quick` | `gpt-6-luna` low → `claude-fable-5-1` low → `claude-opus-5-5` low → `gpt-6-astra` low → `glm-5.3-flash` low (추가 제공자 필요) |
+| 글·문서 | `writing` | `claude-opus-5-5` medium → `gpt-6.1-sol` medium |
+| 화면·프론트엔드 | `visual-engineering` | `claude-fable-5-1` high → `claude-opus-5-5` high → `gpt-6-astra` high |
+| 창의적 작업 | `artistry` | `claude-fable-5-1` high → `claude-opus-5-5` high → `gpt-6-astra` high |
+| 범용 작업 | `capable` | `claude-fable-5-1` medium → `claude-opus-5-5` medium → `claude-sonnet-5-5` medium → `gpt-6-astra` medium → `glm-5.3` medium (추가 제공자 필요) |
 | 단순 정리 | `simple-work` | `gpt-6-luna` low → `claude-fable-5-1` low → `claude-opus-5-5` low → `claude-haiku-4-5` low → `deepseek-flash` low (추가 제공자 필요) |
 | 길고 까다로운 작업 | `deep-work` | `claude-fable-5-1` high → `claude-opus-5-5` high → `gpt-6-astra` high |
 
 ## 기본 옵션
 
-작업 분류·추론은 선택한 프리셋을 따른다. Claude형은 네 분류에서 Fable → Opus 우선, Astra 후순위다. GPT형은 위 비교 표대로 Astra 위치만 복원한다. 범용 작업의 Sonnet과 미연결 후보는 보존한다. OMH는 연결된 후보를 앞으로 모으므로 계정 연결 상태에 따라 표시 순서가 달라질 수 있다. 추론 수준·다른 분류·현재 대화 모델·외부 Codex·Claude Code 설정은 바꾸지 않는다.
+작업 분류·추론은 선택한 프리셋을 따른다. Claude형은 네 분류에서 Fable → Opus 우선, Astra 후순위다. GPT형은 위 비교 표대로 Astra 위치를 복원한다. 글·문서는 Claude형 Opus → Sol, GPT형 Sol → Opus이며 둘 다 medium이다. 범용 작업의 Sonnet과 제거 대상으로 지정하지 않은 후보는 보존한다. OMH는 연결된 후보를 앞으로 모으므로 계정 연결 상태에 따라 표시 순서가 달라질 수 있다. 추론 수준·다른 분류·현재 대화 모델·외부 Codex·Claude Code 설정은 바꾸지 않는다.
 
 설치된 OMH 원본에서 `ultrabrain`은 Astra xhigh 하나, `deep-work`는 Astra high 하나였다. GPT → Fable → Opus는 이번에 추가했다. Sol은 원래 `deep`의 주 모델이었다(Sol high → DeepSeek high). 이 배정은 OMH의 추천 설정이며 Sol만 수행할 수 있는 작업이라는 뜻은 아니다.
 
-**두 버전의 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus다.** 네 분류의 후보 변경과 별개로 공통 fallback의 마지막 Opus는 유지한다. GPT 시작 자식도 Fable을 먼저, Opus를 마지막에 둔다. 주 모델과 같은 후보·사용 불가능한 후보는 건너뛴다. Opus가 주 모델인 작업에서 이미 소진된 Opus를 마지막에 다시 호출한다는 뜻은 아니다. `deep`의 Sol high 주 모델 배정은 유지했다. 글·문서의 Luna → Sonnet → Opus는 제안만 했으며 적용하지 않았다.
+**두 버전의 전역 fallback은 Opus, 자식 공통 fallback은 Fable → Astra → Sonnet → Opus다.** 네 분류의 후보 변경과 별개로 공통 fallback의 마지막 Opus는 유지한다. GPT 시작 자식도 Fable을 먼저, Opus를 마지막에 둔다. 주 모델과 같은 후보·사용 불가능한 후보는 건너뛴다. Opus가 주 모델인 작업에서 이미 소진된 Opus를 마지막에 다시 호출한다는 뜻은 아니다. `deep`의 Sol high 주 모델 배정은 유지했다. 글·문서에는 Fable·Astra·Luna·Sonnet을 배정하지 않는다.
 
 기본 모델이 사용 가능한데 임의로 교체하지 않는다. 모델별 소진과 GPT 계정 전체 소진을 구분하며, 같은 계정 전체가 소진됐으면 Astra·Sol·Luna끼리 바꿔서 회복된다고 간주하지 않는다. 인증 실패·통신 오류를 한도 소진으로 보고하지 않으며 다른 오류로 전환한 경우 원인을 구분한다. 이 표를 미래의 최신 모델 목록으로 취급하지 않는다.
 
-Kimi는 구독·연결이 확인됐을 때만 사용한다. 미구독 환경에서는 건너뛰지만 후보를 삭제하거나 인증 정보를 바꾸지 않는다. 표의 다른 미연결 제공자도 같다.
+Kimi·Qwen·Gemini는 사용자 요청으로 라우팅 후보에서 제거했다. 계정·인증·제공자 연결을 삭제하는 작업은 아니다. 남아 있는 GLM·DeepSeek 후보는 연결이 확인됐을 때만 사용한다.
 
 로그인 성공, OMH의 후보 목록, Hermes가 실행에 사용하는 `delegation.fallback_providers`는 별개다. Fable만 한도에 도달했어도 계정은 로그인 상태일 수 있다. OMH 후보에 Opus가 있다는 이유만으로 Hermes가 자동으로 Opus를 호출한다고 보고하지 않는다.
 
@@ -55,7 +56,7 @@ omh model-chains show --json
 설치 AI는 아래를 한 흐름으로 수행한다.
 
 1. 선택한 프로필의 GPT·Claude 로그인과 모델별 사용 제한 상태를 확인한다. 인증값은 출력하지 않으며 사용 제한 기록을 초기화하지 않는다.
-2. 선택한 프리셋 JSON의 각 분류를 `omh model-chains set`으로 적용한다. 이미 같은 설정이면 변경하지 않는다. 모델마다 해당 분류의 추론 수준을 명시하고 미연결 후보도 보존한다. 연결 상태에 따라 표시 순서가 달라질 수 있으므로 적용 후 다시 읽는다.
+2. 선택한 프리셋 JSON의 각 분류를 `omh model-chains set`으로 적용한다. 이미 같은 설정이면 변경하지 않는다. 모델마다 해당 분류의 추론 수준을 명시하고 선택한 프리셋의 후보를 적용한다. 제거한 Kimi·Qwen·Gemini를 다시 추가하지 않는다. 연결 상태에 따라 표시 순서가 달라질 수 있으므로 적용 후 다시 읽는다.
 3. 아래 명령으로 전역 fallback은 Opus, 공통 자식 fallback은 Fable → Astra → Sonnet → Opus로 맞춘다. GPT 호환 패치도 Opus를 마지막에 둔다. 공통 목록·자식의 실제 목록·분류별 OMH 후보를 구분한다.
 4. 아래 호환 패치를 확인·적용한 뒤 통제된 한도 소진 시험에서 양방향 전환과 기존 추론 유지를 검사한다. 실제 계정 한도를 소진시키거나 제한을 해제하지 않는다.
 5. 최소 실제 위임을 실행해 응답과 `session_model_usage`의 모델·`billing_provider`·API 호출 수를 대조한다. 준비된 배정, fallback 선언, 실제 호출 성공을 따로 기록한다.
@@ -82,7 +83,9 @@ python3 scripts/configure_gpt_fallback.py --source-root <확인한-Hermes-소스
 
 ## 확인
 
-두 프리셋의 차이는 네 분류의 순서뿐이며 기존 추론·미연결 후보·공통 fallback은 같다. 현재 default 프로필의 GPT형 적용과 열두 분류 대조, 공통 fallback 통제 시험은 [프리셋 검증](../project-records/2026-10-08-routing-presets.json)에 기록했다. 이번 전환에서는 실제 제공자 호출이나 한도 소진을 실행하지 않았다.
+Kimi·Qwen·Gemini 제거와 글·문서의 Sol/Opus 배정은 [후보 정리 검증](../project-records/2026-10-08-routing-candidate-cleanup.json)을 따른다. 현재 default 프로필의 GPT형 열두 분류 대조와 테스트 49개가 통과했다. 글·문서에 Sol medium을 배정한 실제 자식은 Sol의 `ROUTING_OK` 응답과 `openai-codex` API 호출 1회를 확인했다. 실제 한도 소진이나 Opus 전환은 실행하지 않았고, 실제 추론 수준은 사용량 기록에 없어 배정값과 구분한다.
+
+두 프리셋의 현재 차이는 Astra 위치가 다른 네 분류와 글·문서의 Opus/Sol 순서다. 추론·남은 후보·공통 fallback은 같다. [이전 프리셋 검증](../project-records/2026-10-08-routing-presets.json)은 글·문서 변경 전 네 분류 전환과 공통 fallback 통제 시험 기록이며, 당시 실제 제공자 호출이나 한도 소진은 실행하지 않았다.
 
 네 분류의 Fable → Opus 우선, Astra 후순위와 공통 fallback 보존은 [분류별 검증](../project-records/2026-10-08-category-routing.json)을 따른다. 이 기록은 설정 대조이며 실제 모델 전환을 실행한 기록은 아니다. 분류별 OMH 후보 순서가 공통 native fallback 순서까지 바꾼다고 간주하지 않는다.
 
@@ -106,25 +109,33 @@ python3 scripts/configure_gpt_fallback.py --source-root <확인한-Hermes-소스
 ### Claude 넉넉형 요청
 
 ```text
-https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/claude-generous.json을 읽고, 내 현재 Hermes 프로필을 Claude 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. 로그인·구독·미연결 후보와 다른 프로필은 임의로 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
+https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/claude-generous.json을 읽고, 내 현재 Hermes 프로필을 Claude 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. Kimi·Qwen·Gemini는 모든 분류에서 제거하고, 로그인·구독·다른 프로필은 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
 ```
 
 ### GPT(코덱스) 넉넉형 요청
 
 ```text
-https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/gpt-generous.json을 읽고, 내 현재 Hermes 프로필을 GPT(코덱스) 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. 로그인·구독·미연결 후보와 다른 프로필은 임의로 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
+https://github.com/PyeongsaengCoding/Hermes-Setup 의 main에서 docs/model-routing.md와 routing-presets/gpt-generous.json을 읽고, 내 현재 Hermes 프로필을 GPT(코덱스) 넉넉형으로 맞춰줘. OMH 분류별 모델 순서·추론과 Hermes 전역·자식 공통 fallback을 구분하고 공통 fallback의 마지막 Opus를 유지해줘. Kimi·Qwen·Gemini는 모든 분류에서 제거하고, 로그인·구독·다른 프로필은 변경하지 말고, 필요한 호환 패치까지 확인·적용한 뒤 설정 대조와 실제 동작 검증을 구분해서 결과를 알려줘.
 ```
 
 ## 선택적 CLI 전환
 
-이미 나머지 여덟 분류와 공통 fallback이 맞는 환경에서 네 분류만 전환하는 명령이다. 새 설치는 위 AI 요청으로 전체 프리셋과 호환 패치까지 맞춘다. 현재 프로필을 확인한 뒤 둘 중 한 블록만 실행한다. 미연결 후보를 연결하거나 로그인하지 않는다.
+선택한 버전의 열두 분류를 적용하는 명령이다. 기존 환경에서도 제거한 후보가 남지 않도록 전체 분류를 명시한다. 새 설치는 위 AI 요청으로 전체 프리셋과 호환 패치까지 맞춘다. 현재 프로필을 확인한 뒤 둘 중 한 블록만 실행한다. 미연결 후보를 연결하거나 로그인하지 않는다.
 
 ### claude-generous CLI
 
 ```sh
-omh model-chains set visual-engineering 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high, kimi-k3:high'
-omh model-chains set artistry 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high, gemini-3.1-pro:high, kimi-k3:high'
-omh model-chains set capable 'claude-fable-5-1:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, gpt-6-astra:medium, kimi-k3:medium, glm-5.3:medium'
+omh model-chains set ultrabrain 'gpt-6-astra:xhigh, claude-fable-5-1:xhigh, claude-opus-5-5:xhigh'
+omh model-chains set deep 'gpt-6.1-sol:high, claude-fable-5-1:high, claude-opus-5-5:high, deepseek-flash:high'
+omh model-chains set architect 'claude-fable-5-1:xhigh, gpt-6-astra:xhigh, claude-opus-5-5:xhigh'
+omh model-chains set unspecified-high 'claude-opus-5-5:medium'
+omh model-chains set unspecified-low 'claude-opus-5-5:low, glm-5.3:low, deepseek-flash:low'
+omh model-chains set quick 'gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, gpt-6-astra:low, glm-5.3-flash:low'
+omh model-chains set writing 'claude-opus-5-5:medium, gpt-6.1-sol:medium'
+omh model-chains set visual-engineering 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high'
+omh model-chains set artistry 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high'
+omh model-chains set capable 'claude-fable-5-1:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, gpt-6-astra:medium, glm-5.3:medium'
+omh model-chains set simple-work 'gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, claude-haiku-4-5:low, deepseek-flash:low'
 omh model-chains set deep-work 'claude-fable-5-1:high, claude-opus-5-5:high, gpt-6-astra:high'
 omh model-chains show --json
 ```
@@ -132,9 +143,17 @@ omh model-chains show --json
 ### gpt-generous CLI
 
 ```sh
-omh model-chains set visual-engineering 'claude-fable-5-1:high, gpt-6-astra:high, claude-opus-5-5:high, kimi-k3:high'
-omh model-chains set artistry 'claude-fable-5-1:high, gpt-6-astra:high, claude-opus-5-5:high, gemini-3.1-pro:high, kimi-k3:high'
-omh model-chains set capable 'claude-fable-5-1:medium, gpt-6-astra:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, kimi-k3:medium, glm-5.3:medium'
+omh model-chains set ultrabrain 'gpt-6-astra:xhigh, claude-fable-5-1:xhigh, claude-opus-5-5:xhigh'
+omh model-chains set deep 'gpt-6.1-sol:high, claude-fable-5-1:high, claude-opus-5-5:high, deepseek-flash:high'
+omh model-chains set architect 'claude-fable-5-1:xhigh, gpt-6-astra:xhigh, claude-opus-5-5:xhigh'
+omh model-chains set unspecified-high 'claude-opus-5-5:medium'
+omh model-chains set unspecified-low 'claude-opus-5-5:low, glm-5.3:low, deepseek-flash:low'
+omh model-chains set quick 'gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, gpt-6-astra:low, glm-5.3-flash:low'
+omh model-chains set writing 'gpt-6.1-sol:medium, claude-opus-5-5:medium'
+omh model-chains set visual-engineering 'claude-fable-5-1:high, gpt-6-astra:high, claude-opus-5-5:high'
+omh model-chains set artistry 'claude-fable-5-1:high, gpt-6-astra:high, claude-opus-5-5:high'
+omh model-chains set capable 'claude-fable-5-1:medium, gpt-6-astra:medium, claude-opus-5-5:medium, claude-sonnet-5-5:medium, glm-5.3:medium'
+omh model-chains set simple-work 'gpt-6-luna:low, claude-fable-5-1:low, claude-opus-5-5:low, claude-haiku-4-5:low, deepseek-flash:low'
 omh model-chains set deep-work 'gpt-6-astra:high, claude-fable-5-1:high, claude-opus-5-5:high'
 omh model-chains show --json
 ```

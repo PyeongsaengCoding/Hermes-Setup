@@ -79,7 +79,8 @@ class DelegationReasoningTests(unittest.TestCase):
                          [{'provider': 'anthropic', 'model': 'claude-opus-5-5'}])
         self.assertEqual(categories['quick'][0]['model'], 'gpt-6-luna')
         self.assertEqual(categories['unspecified-low'][0]['model'], 'claude-opus-5-5')
-        self.assertEqual(categories['writing'][0]['model'], 'kimi-k3')
+        self.assertEqual([item['model'] for item in categories['writing']],
+                         ['claude-opus-5-5', 'gpt-6.1-sol'])
 
     def test_preview_apply_repeat_and_symlink_refusal(self):
         with tempfile.TemporaryDirectory() as directory:
