@@ -11,6 +11,7 @@
 | 앱 | Aside | 로그인 브라우저 작업·프로필 가져오기 | 필수; 공식 앱·CLI·자신의 로그인 | `/Applications/Aside.app` | CLI는 공식 설치기 경로 확인; macOS 프로필은 `~/Library/Application Support/Aside/` |
 | 앱 | Chrome·Edge·Safari | 기존 로그인 브라우저 활용 | 사용하는 브라우저만; 프로필 가져오기는 지원 여부 확인 | `/Applications/` | `~/Library/Application Support/Google/Chrome/`, `~/Library/Application Support/Microsoft Edge/`, Safari는 OS 관리 |
 | 확장·스킬팩 | OMH | 작업 분류·라우팅·검증 지침 | 필수; 공식 install·setup | `~/.omh/`; `~/.local/share/omh/` | Hermes 등록 `H/plugins/omh/`; 스킬 실제 경로는 `skills.external_dirs` 확인 |
+| 런타임 호환 패치 | 자식 fallback 추론 보존 | Fable → Astra → Opus 전환 시 작업별 추론 유지 | 설치본에 추론 재설정 문제가 있을 때만 미리보기·적용·새 프로세스 검증 | 실제 Hermes 소스의 `agent/chat_completion_helpers.py` | `scripts/configure_delegation_reasoning.py`; [적용 기준](docs/model-routing.md) |
 | Hermes 플러그인 | provider-usage | GPT·Claude 사용량·잔여 한도·리셋 시간 | 필수; 설치·활성화·[GPT·Claude만 표시](docs/provider-usage.md)·실제 조회 | `H/plugins/provider-usage/` | Desktop UI `H/desktop-plugins/provider-usage/`; 표시 어댑터 `scripts/configure_provider_usage.py`; 인증은 사용자의 로컬 저장소 |
 | Hermes 플러그인 | omh-auto-routing | 개인 자동 라우팅 강제 실험 | 기존 설치본은 비활성; 기본 배포하지 않음 | `H/plugins/omh-auto-routing/` (기존 설치만) | 공식 OMH 기능이 아님 |
 | Hermes UI 확장 | OMH Desktop·TUI | 상태·작업 표시 | OMH setup에서 선택한 UI 연결 | `H/desktop-plugins/omh/`; `H/tui-widgets/omh-status.mjs` | 설치 여부·표시는 별도 확인 |

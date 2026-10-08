@@ -1,0 +1,80 @@
+{
+  "schema_version": "routing_verification/v1",
+  "observed_on": "2026-10-08",
+  "verification_kind": "controlled native fallback; provider clients mocked; no real quota changes",
+  "cases": [
+    {
+      "effort": "low",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    },
+    {
+      "effort": "medium",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    },
+    {
+      "effort": "high",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    },
+    {
+      "effort": "xhigh",
+      "sequence": [
+        "claude-fable-5-1",
+        "gpt-6-astra",
+        "claude-opus-5-5"
+      ],
+      "preserved": true
+    }
+  ],
+  "main_session_policy_unchanged": true,
+  "live_source_guard_loaded": true,
+  "live_child": {
+    "executor": "Hermes-native child in a fresh one-shot process",
+    "assigned_model": "claude-fable-5-1",
+    "assigned_provider": "anthropic",
+    "configured_reasoning_effort": "low",
+    "observed_model": "claude-fable-5-1",
+    "billing_provider": "anthropic",
+    "api_call_count": 1,
+    "response": "ROUTING_OK",
+    "observed_reasoning_effort": "not recorded in session_model_usage",
+    "real_fallback_exercised": false
+  },
+  "independent_review": {
+    "agent": "Hermes-native reviewer",
+    "assigned_model": "gpt-6-luna",
+    "configured_reasoning_effort": "low",
+    "observed_model": "gpt-6-luna",
+    "billing_provider": "openai-codex",
+    "api_call_count": 8,
+    "passed": true,
+    "security_concerns": [],
+    "logic_errors": [],
+    "nonblocking_suggestions": [
+      "Extend tests for missing or invalid delegate depths and absent reasoning config",
+      "Document atomic replacement inode and metadata behavior"
+    ]
+  },
+  "checks": {
+    "repository_check": "PASS",
+    "repository_unittest_count": 37,
+    "repository_unittest_result": "PASS",
+    "full_upstream_pytest": "not run: pytest absent from the managed runtime",
+    "temporary_route_restored": true,
+    "existing_desktop_process_restarted": false
+  }
+}

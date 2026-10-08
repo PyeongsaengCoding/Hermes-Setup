@@ -51,7 +51,7 @@ omh doctor
 omh model-chains show
 ```
 
-작업 분류·추론은 OMH 설정을 사용한다. Claude 확인 경로는 최신 Fable → 최신 Opus → 최신 Sonnet 순서로 준비하며, OMH 후보뿐 아니라 Hermes의 실제 자식 fallback도 대조한다. 기존 다른 제공자 설정은 보존한다. 설정·모델 ID 확인·실제 위임 검증은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
+작업 분류·추론은 OMH 설정을 사용한다. 기존 Fable 경로는 Fable → Astra → Opus 순서로 준비하고 작업별 추론 수준을 유지한다. Kimi는 구독·연결이 확인될 때만 사용한다. OMH 후보와 Hermes의 실제 자식 fallback을 대조하고, 자동 전환 시 추론 보존 호환 패치도 검사한다. 다른 분류·기존 나머지 후보는 보존한다. 설정·모델 ID 확인·실제 위임 검증은 [모델 안내](docs/model-routing.md)를 따른다. 기존 로컬 라우팅 플러그인을 자동 복사하지 않는다.
 
 ## 4. 사용량 플러그인
 
@@ -79,7 +79,7 @@ python3 scripts/configure_provider_usage.py --apply
 - Hermes Desktop에서 실제 질문이 응답한다.
 - 기존 ChatGPT·Claude 앱이 있으면 기준 앱과 Hermes의 창·글자·UI 크기를 실제로 비교하고 설정 유지 여부를 확인한다. 기준 앱 없음·권한 부족·재실행 미확인은 적용 완료와 구분한다.
 - GPT·Claude 내부 자식의 실제 모델·provider·응답을 확인한다. 연결한 제공자만 검사한다.
-- 통제된 모델별 제한으로 Fable → Opus → Sonnet fallback 순서를 검사한다. 실제 한도를 소진시키거나 사용 제한을 초기화하지 않는다. 실제 호출의 모델·billing provider도 별도로 확인한다.
+- 통제된 모델별 제한으로 Fable → Astra → Opus fallback 순서와 기존 작업별 추론 유지를 검사한다. 실제 한도를 소진시키거나 사용 제한을 초기화하지 않는다. 패치는 새 프로세스에서 확인하고 실제 호출의 모델·billing provider도 별도로 확인한다.
 - 사용량 패널의 실제 조회·새로고침을 확인하고, GPT·Claude 외 제공자가 상태바·툴팁·상세 패널·알림에 나타나지 않는지 검사한다.
 - 브라우저에서 이동·입력·결과 읽기가 되고 원래 앱·키보드 대상·커서가 유지된다.
 - 기존 프로필·스킬·브라우저 데이터가 보존된다.
