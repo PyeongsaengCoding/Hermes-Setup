@@ -30,11 +30,9 @@ python3 scripts/install_skills.py --apply
 
 첫 명령은 미리보기이며 적용은 없는 스킬만 추가한다. 외부 도구·서비스 권한은 필요한 작업을 사용할 때 준비한다. Python 라이브러리는 프로젝트 `.venv/`, CLI는 패키지 관리자의 위치에 두고 Hermes 런타임에 임의로 pip 설치하지 않는다.
 
-Humanizer는 이 설치기로, 코드 정리용 `omh-ai-slop-cleaner`는 OMH로 준비한다. 둘 다 필수지만 설치만으로 자동 실행하지 않으며, 문장 검토를 코드 정리로 확대하지 않는다.
-
 ## 전역 규칙
 
-[전역 규칙](docs/global-rules.md)에 따라 선택한 프로필의 `SOUL.md`에 사용자 의도·정정 반영과 Aside 직접 조작 규칙을 적용한다.
+[전역 규칙](docs/global-rules.md)에 따라 선택한 프로필의 `SOUL.md`에 사용자 의도·정정 반영, Aside 직접 조작, 문서 전달 시 폴더 카드 제공·앱 자동 실행 금지 규칙을 적용한다.
 
 ```sh
 python3 scripts/install_global_rules.py
@@ -83,7 +81,7 @@ python3 scripts/configure_provider_usage.py --apply
 설정 저장·진단·테스트 통과와 실제 동작 확인을 구분한다. 설치 AI는 아래 결과를 확인하고 완료·미완료를 보고한다.
 
 - Desktop 질문 응답, 연결한 제공자의 실제 자식 모델·provider·응답, 라우팅 문서의 fallback·추론 검증.
-- Humanizer·`omh-ai-slop-cleaner` 실제 로드와 새 Hermes 세션의 전역 규칙 로딩.
+- 새 Hermes 세션의 전역 규칙 로딩과 문서 전달 시 실제 폴더 카드 제공·앱 미실행.
 - 사용량 조회·리셋 시간·새로고침과 상태바·툴팁·상세 패널·알림의 GPT·Claude 표시 제한.
 - 프로젝트별 Aside 프로필에서 `repl` 이동·입력·결과 읽기, 자체 AI 미호출과 포커스 보존.
 - 기준 앱이 있으면 창·글자·UI 크기 비교와 설정 유지. 재실행 확인 전에는 미확인으로 남긴다.

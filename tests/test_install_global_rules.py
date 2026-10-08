@@ -52,6 +52,8 @@ class GlobalRulesTests(unittest.TestCase):
         self.assertEqual(content.decode().count(installer.BROWSER_START), 1)
         self.assertEqual(content.decode().count(installer.INTENT_START), 1)
         self.assertIn(installer.intent_policy(), content.decode())
+        self.assertIn(installer.delivery_policy(), content.decode())
+        self.assertEqual(content.decode().count(installer.DELIVERY_START), 1)
 
     def test_preserves_existing_text(self):
         existing = '# My tone\nPersonal rules.\n'
@@ -69,13 +71,35 @@ class GlobalRulesTests(unittest.TestCase):
         self.assertNotIn(installer.BROWSER_START, updated)
 
     def test_existing_unmarked_intent_policy_not_duplicated(self):
-        existing = installer.browser_policy() + '\n\n' + installer.intent_policy() + '\n'
+        existing = installer.browser_policy() + '\n\n' + installer.intent_policy() + '\n\n' + installer.delivery_policy() + '\n'
         self.seed(existing)
         self.assertEqual(installer.install(self.home, apply=True)['status'], 'unchanged')
         self.assertEqual(self.target.read_text(), existing)
 
     def test_changed_intent_rule_preserves_whole_file(self):
         existing = installer.INTENT_START + '\nPersonal edit.\n' + installer.INTENT_END + '\n'
+        self.seed(existing)
+        with self.assertRaises(ValueError):
+            installer.install(self.home, apply=True)
+        self.assertEqual(self.target.read_text(), existing)
+
+    def test_delivery_policy_requires_folder_card_without_auto_open(self):
+        body = installer.delivery_policy()
+        self.assertIn('::preview{file=', body)
+        self.assertIn('Do not automatically open Finder', body)
+        self.assertIn('explicitly asks', body)
+
+    def test_existing_unmarked_delivery_not_duplicated(self):
+        existing = installer.delivery_policy() + '\n'
+        self.seed(existing)
+        installer.install(self.home, apply=True)
+        updated = self.target.read_text()
+        self.assertTrue(updated.startswith(existing))
+        self.assertEqual(updated.count(installer.delivery_policy()), 1)
+        self.assertNotIn(installer.DELIVERY_START, updated)
+
+    def test_changed_delivery_rule_preserves_whole_file(self):
+        existing = installer.DELIVERY_START + '\nPersonal edit.\n' + installer.DELIVERY_END + '\n'
         self.seed(existing)
         with self.assertRaises(ValueError):
             installer.install(self.home, apply=True)

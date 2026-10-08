@@ -27,7 +27,7 @@ GPT 넉넉형을 원하면 위 요청의 모델 라우팅 줄만 다음으로 �
 - [설치 목록](INSTALL-LIST.md): 플러그인·스킬·추가 도구와 설치 경로를 한 표로 정리
 - [설치](INSTALL_FOR_AGENTS.md): Hermes 없는 상태부터 시작
 - [모델 라우팅](docs/model-routing.md): Claude 넉넉형 / GPT(코덱스) 넉넉형, 버전별 AI 요청문·CLI 전환 명령
-- [전역 규칙](docs/global-rules.md): 사용자 의도·정정 반영과 Aside 직접 조작을 선택한 프로필의 SOUL.md에 중복 없이 적용
+- [전역 규칙](docs/global-rules.md): 사용자 의도·정정 반영, Aside 직접 조작, 문서 전달 시 폴더 카드 제공·앱 자동 실행 금지를 선택한 프로필의 SOUL.md에 중복 없이 적용
 - [Desktop UI 크기](docs/desktop-ui.md): 기존 ChatGPT·Claude 앱 기준으로 창·글자·UI 배율 맞춤
 - [사용량 표시 제한](docs/provider-usage.md): GPT·Claude만 상태바·패널·알림에 표시
 - [브라우저](docs/browsers.md): Aside·Chrome·Edge·Safari 연결과 프로필 가져오기

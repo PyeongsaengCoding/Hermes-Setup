@@ -173,17 +173,6 @@
       "local_modified": false
     },
     {
-      "name": "humanizer",
-      "description": "과장·군더더기·AI 문체 제거",
-      "kind": "skill",
-      "source_kind": "upstream",
-      "source_path": "skills/creative/humanizer",
-      "install_path": "skills/creative/humanizer",
-      "extra_install": "별도 설치 없음; 작업에 맞는 기본 도구",
-      "extra_path": "—",
-      "local_modified": false
-    },
-    {
       "name": "manim-video",
       "description": "Manim 수학·알고리즘 영상",
       "kind": "skill",

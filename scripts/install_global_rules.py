@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Add intent and Aside rules to a chosen Hermes profile without overwriting its SOUL."""
+"""Add intent, Aside and document delivery rules without overwriting the profile's SOUL."""
 import argparse
 import json
 import os
@@ -15,6 +15,9 @@ BROWSER_HEADING = '## Browser work in Aside'
 INTENT_START = '<!-- hermes-setup:user-intent:begin -->'
 INTENT_END = '<!-- hermes-setup:user-intent:end -->'
 INTENT_HEADING = '## User intent and course correction'
+DELIVERY_START = '<!-- hermes-setup:document-delivery:begin -->'
+DELIVERY_END = '<!-- hermes-setup:document-delivery:end -->'
+DELIVERY_HEADING = '## Document delivery in Hermes Desktop'
 
 
 def browser_policy():
@@ -23,6 +26,10 @@ def browser_policy():
 
 def intent_policy():
     return (ROOT / 'templates/user-intent.md').read_text(encoding='utf-8').strip()
+
+
+def delivery_policy():
+    return (ROOT / 'templates/document-delivery.md').read_text(encoding='utf-8').strip()
 
 
 def policy_status(existing, body, start_marker, end_marker, heading):
@@ -55,6 +62,7 @@ def install(home, apply=False):
     policies = (
         (browser_policy(), BROWSER_START, BROWSER_END, BROWSER_HEADING),
         (intent_policy(), INTENT_START, INTENT_END, INTENT_HEADING),
+        (delivery_policy(), DELIVERY_START, DELIVERY_END, DELIVERY_HEADING),
     )
     # Validate every policy before writing, so a conflict preserves the whole file.
     additions = []
