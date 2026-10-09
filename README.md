@@ -1,6 +1,6 @@
 # Hermes-Setup
 
-macOS에서 Hermes Desktop, OMH, 사용량 플러그인, 스킬과 브라우저 작업 환경을 구성한다. 계정·인증·대화·브라우저 데이터는 포함하지 않는다.
+macOS에서 Hermes Desktop, OMH, 사용량 플러그인, 스킬과 브라우저 작업 환경을 구성한다. 개인 계정·인증·대화·브라우저 데이터는 Git 저장소에 넣지 않는다. 사용자가 선택한 브라우저 프로필은 로컬 Aside로 가져온다.
 
 설치 대상은 **Apple Silicon(M 시리즈, ARM64) 맥북**이다. Intel Mac과 다른 OS는 이 안내의 설치 대상이 아니다.
 
@@ -8,7 +8,7 @@ macOS에서 Hermes Desktop, OMH, 사용량 플러그인, 스킬과 브라우저 
 
 Hermes가 아직 없으면 로컬 파일과 명령을 사용할 수 있는 AI에 다음 요청을 보낸다.
 
-> https://github.com/PyeongsaengCoding/Hermes-Setup 을 `~/Downloads/Hermes-Setup`에 받아 설치 안내에 따라 내 Mac에 구성해줘. Hermes Desktop·OMH·사용량 플러그인·필수 스킬과 전역 규칙을 준비하고, GPT·Claude만 사용량에 표시해줘. 브라우저는 프로젝트별 Aside 프로필에서 Hermes가 repl로 직접 조작하고 자체 AI에는 위임하지 않게 해줘. 내가 선택한 브라우저 프로필을 가져오고, 기존 ChatGPT·Claude 앱이 있으면 Hermes의 창·글자·UI 크기를 맞춰줘. 기존 설정·데이터·포커스를 보존하고 필요한 선택·로그인·권한·충돌만 확인해줘. 설치부터 완료 기준의 실제 동작 검증까지 맡아서 완료한 것과 남은 것만 알려줘.
+> https://github.com/PyeongsaengCoding/Hermes-Setup 을 `~/Downloads/Hermes-Setup`에 받아 설치 안내에 따라 내 Mac에 구성해줘. Hermes Desktop·OMH·사용량 플러그인·필수 스킬과 전역 규칙을 준비하고, GPT·Claude만 사용량에 표시해줘. 브라우저는 프로젝트별 Aside 프로필에서 Hermes가 repl로 직접 조작하고 자체 AI에는 위임하지 않게 해줘. 내가 선택한 브라우저 프로필을 가져오고, 기존 ChatGPT·Claude 앱이 있으면 Hermes의 창·글자·UI 크기를 맞춰줘. 설치 대상 외의 설정과 기존 데이터·포커스를 보존하고 필요한 선택·로그인·권한·충돌만 확인해줘. 설치부터 완료 기준의 실제 동작 검증까지 맡아서 완료한 것과 남은 것만 알려줘.
 >
 > 모델 라우팅은 docs/model-routing.md에 따라 Claude 넉넉형(routing-presets/claude-generous.json)으로 적용해줘.
 

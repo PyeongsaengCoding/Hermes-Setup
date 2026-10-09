@@ -17,4 +17,4 @@ Use for authorized app installation and browser-profile migration. Read official
 5. Verify installed, imported, authenticated and agent-connected states separately. Keep a per-profile completion list.
 6. Preserve the active app, keyboard target and cursor. Stop when an operation requires foreground access the user has not allowed.
 
-Pair with `computer-use` for GUI actions. An install receipt does not prove migration or safe input works.
+Use the destination browser's supported import UI for profile migration and the project's browser tool for page interaction. Use `computer-use` for native desktop app GUI actions.

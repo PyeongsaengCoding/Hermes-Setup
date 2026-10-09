@@ -29,4 +29,4 @@ python3 -m unittest discover -s tests -v
 - Aside 전체 프로필 가져오기·실제 계정·입력·동시 작업·포커스 보존.
 - 기준 앱과 Hermes의 창·글자·UI 크기 비교와 설정 유지.
 
-이전 시험 수·당시 라우팅·전역 보고서 규칙 검증은 [과거 기록](../project-records/document-verification-history.md)에 보존한다. 현재 설치기는 보고서 문체·스킬 기준을 배포하지 않으며 문서 전달 시 폴더 카드 제공·앱 자동 실행 금지만 배포한다.
+이전 시험 수·당시 라우팅·전역 보고서 규칙 검증은 [과거 기록](../project-records/document-verification-history.md)에 보존한다. 현재 전역 규칙 설치 대상은 Aside 직접 조작과 Desktop 문서 전달 규칙이다.

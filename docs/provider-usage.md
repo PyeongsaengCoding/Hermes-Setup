@@ -1,6 +1,6 @@
 # 사용량 플러그인 표시 제한
 
-`provider-usage`의 상태바·툴팁·상세 패널·한도 알림에는 GPT와 Claude만 표시한다. 내부 제공자 ID는 GPT가 `openai-codex`, Claude가 `anthropic`이다. 표시명은 GPT·Claude로 맞춘다. 연결되지 않은 계정을 억지로 표시하거나 조회 실패를 사용량 0으로 바꾸지 않는다.
+`provider-usage`의 상태바·툴팁·상세 패널·한도 알림에는 연결된 GPT·Claude만 표시한다. 내부 제공자 ID는 GPT가 `openai-codex`, Claude가 `anthropic`이다. 표시명은 GPT·Claude로 맞춘다. 조회 실패는 오류로 표시하고 사용량 0으로 처리하지 않는다.
 
 원본 v0.2.0의 눈 버튼은 상태바 표시만 조절한다. 상세 패널과 알림까지 제한하는 기본 설정은 확인되지 않아, 이 저장소의 표시 어댑터를 적용한다. 공식 플러그인의 기본 기능과 구분한다.
 

@@ -14,7 +14,7 @@ Use for slow projections, snapshots or graph read paths. Inspect the actual read
 3. Keep immutable content integrity separate from fresh disclosure checks. Reproduce revocation, deletion and cancellation during a read; stable-data tests do not prove safe memoization.
 4. Bound service-wide concurrency, retained results, admission and memory. Test fairness, input-order failure selection, cancellation and capacity losers.
 5. Process projection changes idempotently. Preserve restrictive visibility fences before asynchronous updates; do not serve partially assembled snapshots.
-6. Test the exact candidate and serving revision. Keep source data and credentials out of logs. Distinguish synthetic benchmarks, real-storage checks and authenticated user flows.
+6. Test the exact candidate and serving revision. Do not log credentials or private source contents. Distinguish synthetic benchmarks, real-storage checks and authenticated user flows.
 7. Verify real open, refresh and reentry before reporting recovery. Record remaining latency or permission gaps rather than calling tests a fix.
 
-Use the target project's tools and fixtures. This general skill contains no project identifiers or production access recipe.
+Use the target project's tools and fixtures.
